@@ -1,0 +1,546 @@
+2020-07-03 13:58:31,807 [INFO] - Log Started
+2020-07-03 13:58:32,813 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 13:58:56,198 [INFO] - Cannot undo previous operation
+2020-07-03 13:58:58,711 [INFO] - transfer complete: 0219f570
+2020-07-03 13:58:58,890 [INFO] - transfer skipped: 021a0542
+2020-07-03 13:58:59,071 [INFO] - transfer failed: 021a13e8
+2020-07-03 13:58:59,279 [INFO] - transfer complete: 021a21bc
+2020-07-03 13:58:59,555 [INFO] - transfer complete: 021a35a8
+2020-07-03 13:58:59,555 [INFO] - Plate complete
+2020-07-03 13:59:00,041 [INFO] - Cannot update transfer: 021a35a8, status is already marked as completed
+2020-07-03 13:59:00,041 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 13:59:01,363 [INFO] - Plate p2 loaded
+2020-07-03 13:59:06,157 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 13:59:36,662 [INFO] - Cannot undo previous operation
+2020-07-03 13:59:36,975 [INFO] - transfer complete: 1a5de204
+2020-07-03 13:59:37,294 [INFO] - transfer skipped: 1a5dfb0e
+2020-07-03 13:59:37,576 [INFO] - transfer failed: 1a5e1094
+2020-07-03 13:59:37,904 [INFO] - transfer complete: 1a5e1d00
+2020-07-03 13:59:38,263 [INFO] - transfer complete: 1a5e249e
+2020-07-03 13:59:38,263 [INFO] - Plate complete
+2020-07-03 13:59:38,773 [INFO] - Cannot update transfer: 1a5e249e, status is already marked as completed
+2020-07-03 13:59:38,773 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 13:59:41,902 [INFO] - Plate p2 loaded
+2020-07-03 13:59:45,034 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 13:59:55,563 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:04:29,757 [INFO] - Cannot undo previous operation
+2020-07-03 14:04:30,149 [INFO] - transfer complete: c8fa59be
+2020-07-03 14:04:30,538 [INFO] - transfer skipped: c8fa6c7e
+2020-07-03 14:04:30,917 [INFO] - transfer failed: c8fa7ade
+2020-07-03 14:04:31,246 [INFO] - transfer complete: c8fa8254
+2020-07-03 14:04:31,621 [INFO] - transfer complete: c8fa8880
+2020-07-03 14:04:31,624 [INFO] - Plate complete
+2020-07-03 14:04:32,197 [INFO] - Cannot update transfer: c8fa8880, status is already marked as completed
+2020-07-03 14:04:32,198 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:04:33,555 [INFO] - Plate p2 loaded
+2020-07-03 14:04:36,759 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:04:47,350 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:04:47,353 [INFO] - Remaining 0 transfers in plate p2 skipped
+2020-07-03 14:04:47,353 [INFO] - Plate p3 loaded
+2020-07-03 14:05:46,197 [INFO] - Cannot undo previous operation
+2020-07-03 14:05:46,596 [INFO] - transfer complete: f688bd4e
+2020-07-03 14:05:46,928 [INFO] - transfer skipped: f688c9ec
+2020-07-03 14:05:47,332 [INFO] - transfer failed: f688d766
+2020-07-03 14:05:47,696 [INFO] - transfer complete: f688eabc
+2020-07-03 14:05:48,118 [INFO] - transfer complete: f6890510
+2020-07-03 14:05:48,120 [INFO] - Plate complete
+2020-07-03 14:05:48,575 [INFO] - Cannot update transfer: f6890510, status is already marked as completed
+2020-07-03 14:05:48,576 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:05:49,115 [INFO] - Plate p2 loaded
+2020-07-03 14:05:53,215 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:05:53,215 [INFO] - Remaining 55 transfers in plate p2 skipped
+2020-07-03 14:05:53,215 [INFO] - Plate p3 loaded
+2020-07-03 14:09:28,664 [INFO] - Cannot undo previous operation
+2020-07-03 14:09:28,972 [INFO] - transfer complete: 7b39b124
+2020-07-03 14:09:29,247 [INFO] - transfer skipped: 7b39b89a
+2020-07-03 14:09:29,548 [INFO] - transfer failed: 7b39bf52
+2020-07-03 14:09:29,836 [INFO] - transfer complete: 7b39c5a6
+2020-07-03 14:09:30,177 [INFO] - transfer complete: 7b39def6
+2020-07-03 14:09:30,177 [INFO] - Plate complete
+2020-07-03 14:09:30,507 [INFO] - Cannot update transfer: 7b39def6, status is already marked as completed
+2020-07-03 14:09:30,509 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:09:30,835 [INFO] - Plate p2 loaded
+2020-07-03 14:09:32,292 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:09:32,292 [INFO] - Remaining 4 transfers in plate p2 skipped
+2020-07-03 14:09:32,294 [INFO] - Plate p3 loaded
+2020-07-03 14:09:37,571 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 14:09:40,391 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 14:09:40,392 [INFO] - Remaining 5 transfers in plate p3 skipped
+2020-07-03 14:09:40,392 [INFO] - TransferProtocol complete
+2020-07-03 14:10:26,014 [INFO] - Cannot undo previous operation
+2020-07-03 14:10:26,874 [INFO] - transfer complete: 9d498ff0
+2020-07-03 14:10:28,054 [INFO] - transfer skipped: 9d499dce
+2020-07-03 14:10:28,358 [INFO] - transfer failed: 9d49eca2
+2020-07-03 14:10:28,666 [INFO] - transfer complete: 9d4a0d04
+2020-07-03 14:10:29,010 [INFO] - transfer complete: 9d4a2ac8
+2020-07-03 14:10:29,010 [INFO] - Plate complete
+2020-07-03 14:11:03,187 [INFO] - Cannot update transfer: 9d4a2ac8, status is already marked as completed
+2020-07-03 14:11:03,187 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:12:23,013 [INFO] - Cannot undo previous operation
+2020-07-03 14:12:23,432 [INFO] - transfer complete: e3037c72
+2020-07-03 14:12:23,784 [INFO] - transfer skipped: e3038c62
+2020-07-03 14:12:24,100 [INFO] - transfer failed: e3039ad6
+2020-07-03 14:12:24,426 [INFO] - transfer complete: e303aa8a
+2020-07-03 14:12:24,686 [INFO] - transfer complete: e303b278
+2020-07-03 14:12:24,686 [INFO] - Plate complete
+2020-07-03 14:12:28,608 [INFO] - Cannot update transfer: e303b278, status is already marked as completed
+2020-07-03 14:12:28,608 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:12:45,210 [INFO] - Plate p2 loaded
+2020-07-03 14:12:51,758 [INFO] - Cannot update transfer: e303b278, status is already marked as completed
+2020-07-03 14:12:52,041 [INFO] - Cannot update transfer: e303b278, status is already marked as completed
+2020-07-03 14:15:41,235 [INFO] - Log Started
+2020-07-03 14:15:41,915 [INFO] - Cannot undo previous operation
+2020-07-03 14:15:42,415 [INFO] - transfer complete: 59b76c5c
+2020-07-03 14:15:42,790 [INFO] - transfer skipped: 59b7749a
+2020-07-03 14:15:43,035 [INFO] - transfer failed: 59b77bb6
+2020-07-03 14:15:43,239 [INFO] - transfer complete: 59b78750
+2020-07-03 14:15:43,495 [INFO] - transfer complete: 59b79006
+2020-07-03 14:15:43,495 [INFO] - Plate complete
+2020-07-03 14:15:43,787 [INFO] - Cannot update transfer: 59b79006, status is already marked as completed
+2020-07-03 14:15:43,788 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:15:44,086 [INFO] - Plate p2 loaded
+2020-07-03 14:21:20,157 [INFO] - CSV file good.csv loaded
+2020-07-03 14:21:20,201 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:21:22,524 [INFO] - Cannot undo previous operation
+2020-07-03 14:21:23,299 [INFO] - transfer complete: 2374edb2
+2020-07-03 14:21:23,816 [INFO] - transfer skipped: 2374f564
+2020-07-03 14:21:24,241 [INFO] - transfer failed: 2374fb5e
+2020-07-03 14:21:24,604 [INFO] - transfer complete: 23750130
+2020-07-03 14:21:24,972 [INFO] - transfer complete: 237506e4
+2020-07-03 14:21:24,973 [INFO] - Plate complete
+2020-07-03 14:21:25,340 [INFO] - Cannot update transfer: 237506e4, status is already marked as completed
+2020-07-03 14:21:25,341 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:21:25,696 [INFO] - Plate p2 loaded
+2020-07-03 14:27:26,708 [INFO] - Cannot update transfer: 237506e4, status is already marked as completed
+2020-07-03 14:27:30,222 [INFO] - Cannot update transfer: 237506e4, status is already marked as completed
+2020-07-03 14:27:31,956 [INFO] - Cannot update transfer: 237506e4, status is already marked as completed
+2020-07-03 14:27:37,317 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:43:58,823 [INFO] - CSV file good.csv loaded
+2020-07-03 14:43:58,863 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:43:59,878 [INFO] - transfer complete: 4d485392
+2020-07-03 14:45:53,661 [INFO] - CSV file good.csv loaded
+2020-07-03 14:45:53,703 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:47:14,599 [INFO] - CSV file good.csv loaded
+2020-07-03 14:47:14,639 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:47:57,408 [INFO] - Log Started
+2020-07-03 14:47:58,300 [INFO] - CSV file good.csv loaded
+2020-07-03 14:47:58,329 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 14:47:58,440 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:48:01,057 [INFO] - transfer complete: dc14f760
+2020-07-03 14:48:02,297 [INFO] - transfer skipped: dc14ffbc
+2020-07-03 14:48:02,904 [INFO] - transfer failed: dc150598
+2020-07-03 14:48:03,412 [INFO] - transfer complete: dc150b38
+2020-07-03 14:48:03,881 [INFO] - transfer complete: dc1510ba
+2020-07-03 14:48:03,881 [INFO] - Plate p1 completed
+2020-07-03 14:48:05,553 [INFO] - Cannot update transfer: dc1510ba, status is already marked as completed
+2020-07-03 14:48:05,553 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:48:11,044 [INFO] - Plate p2 loaded
+2020-07-03 14:48:38,055 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:49:48,691 [INFO] - CSV file good.csv loaded
+2020-07-03 14:49:48,731 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:49:49,494 [INFO] - transfer complete: 1dd19fd2
+2020-07-03 14:49:49,835 [INFO] - transfer skipped: 1dd1a676
+2020-07-03 14:49:50,245 [INFO] - transfer failed: 1dd1ac52
+2020-07-03 14:49:50,610 [INFO] - transfer complete: 1dd1b206
+2020-07-03 14:49:50,972 [INFO] - transfer complete: 1dd1b7a6
+2020-07-03 14:49:50,972 [INFO] - Plate p1 completed
+2020-07-03 14:49:51,292 [INFO] - Cannot update transfer: 1dd1b7a6, status is already marked as completed
+2020-07-03 14:49:51,293 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:49:51,921 [INFO] - Plate p1 loaded
+2020-07-03 14:49:51,925 [INFO] - Plate p1 completed
+2020-07-03 14:50:43,468 [INFO] - CSV file good.csv loaded
+2020-07-03 14:50:43,507 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:50:43,864 [INFO] - transfer complete: 3e782102
+2020-07-03 14:50:44,207 [INFO] - transfer skipped: 3e782832
+2020-07-03 14:50:44,563 [INFO] - transfer failed: 3e782e90
+2020-07-03 14:50:44,868 [INFO] - transfer complete: 3e7834b2
+2020-07-03 14:50:45,164 [INFO] - transfer complete: 3e783ac0
+2020-07-03 14:50:45,164 [INFO] - Plate p1 completed
+2020-07-03 14:50:45,436 [INFO] - Cannot update transfer: 3e783ac0, status is already marked as completed
+2020-07-03 14:50:45,436 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:50:45,791 [INFO] - Plate p1 loaded
+2020-07-03 14:50:51,040 [INFO] - Warning: Plate p1 not yet complete
+2020-07-03 14:50:51,041 [INFO] - Remaining 4 transfers in plate p1 skipped
+2020-07-03 14:50:51,041 [INFO] - Plate p2 loaded
+2020-07-03 14:50:59,356 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:51:05,252 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 14:51:13,255 [INFO] - CSV file good.csv loaded
+2020-07-03 14:51:13,295 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:51:13,899 [INFO] - transfer complete: 50396554
+2020-07-03 14:51:14,203 [INFO] - transfer skipped: 50396d2e
+2020-07-03 14:51:14,591 [INFO] - transfer failed: 50397b34
+2020-07-03 14:51:15,090 [INFO] - transfer complete: 50398354
+2020-07-03 14:51:15,482 [INFO] - transfer complete: 503989b2
+2020-07-03 14:51:15,483 [INFO] - Plate p1 completed
+2020-07-03 14:51:15,868 [INFO] - Cannot update transfer: 503989b2, status is already marked as completed
+2020-07-03 14:51:15,869 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:51:16,584 [INFO] - Plate p1 loaded
+2020-07-03 14:53:24,785 [INFO] - CSV file good.csv loaded
+2020-07-03 14:53:24,821 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:53:25,439 [INFO] - transfer complete: 9e9eb172
+2020-07-03 14:53:25,723 [INFO] - transfer skipped: 9e9eb88e
+2020-07-03 14:53:26,023 [INFO] - transfer failed: 9e9ebece
+2020-07-03 14:53:26,275 [INFO] - transfer complete: 9e9ec48c
+2020-07-03 14:53:26,524 [INFO] - transfer complete: 9e9eca22
+2020-07-03 14:53:26,524 [INFO] - Plate p1 completed
+2020-07-03 14:53:26,782 [INFO] - Cannot update transfer: 9e9eca22, status is already marked as completed
+2020-07-03 14:53:26,782 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:53:27,095 [INFO] - Plate p1 loaded
+2020-07-03 14:59:04,228 [INFO] - Warning: Plate p1 not yet complete
+2020-07-03 14:59:08,551 [INFO] - CSV file good.csv loaded
+2020-07-03 14:59:08,591 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 14:59:09,654 [INFO] - transfer complete: 6b85d86e
+2020-07-03 14:59:10,019 [INFO] - transfer skipped: 6b85e002
+2020-07-03 14:59:10,422 [INFO] - transfer failed: 6b85e692
+2020-07-03 14:59:10,775 [INFO] - transfer complete: 6b85ecc8
+2020-07-03 14:59:11,147 [INFO] - transfer complete: 6b85f2c2
+2020-07-03 14:59:11,148 [INFO] - Plate p1 completed
+2020-07-03 14:59:11,523 [INFO] - Cannot update transfer: 6b85f2c2, status is already marked as completed
+2020-07-03 14:59:11,523 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 14:59:12,243 [INFO] - Plate p2 loaded
+2020-07-03 15:00:36,805 [INFO] - CSV file good.csv loaded
+2020-07-03 15:00:36,842 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 15:00:37,987 [INFO] - transfer complete: a01fc828
+2020-07-03 15:00:38,390 [INFO] - transfer skipped: a01fcecc
+2020-07-03 15:00:38,684 [INFO] - transfer failed: a01fd4a8
+2020-07-03 15:00:38,945 [INFO] - transfer complete: a01fda52
+2020-07-03 15:00:39,173 [INFO] - transfer complete: a01fdfe8
+2020-07-03 15:00:39,173 [INFO] - Plate p1 completed
+2020-07-03 15:00:39,430 [INFO] - Cannot update transfer: a01fdfe8, status is already marked as completed
+2020-07-03 15:00:39,430 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 15:00:39,817 [INFO] - Plate p2 loaded
+2020-07-03 15:00:52,646 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 15:00:54,749 [INFO] - transfer complete: a01ffe56
+2020-07-03 15:00:57,036 [INFO] - transfer complete: a0200496
+2020-07-03 15:01:02,769 [INFO] - transfer marked incomplete: a0200496
+2020-07-03 15:02:29,284 [INFO] - Cannot undo previous operation
+2020-07-03 15:02:34,418 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 15:02:37,746 [INFO] - transfer failed: a0200496
+2020-07-03 15:02:38,218 [INFO] - transfer complete: a0200a68
+2020-07-03 15:02:38,830 [INFO] - transfer complete: a02015e4
+2020-07-03 15:02:38,831 [INFO] - Plate p2 completed
+2020-07-03 15:02:39,202 [INFO] - Cannot update transfer: a02015e4, status is already marked as completed
+2020-07-03 15:02:39,203 [INFO] - Plate p2 is complete, press next plate to continue
+2020-07-03 15:02:39,586 [INFO] - Plate p3 loaded
+2020-07-03 15:03:09,377 [INFO] - transfer complete: a0203600
+2020-07-03 15:03:24,324 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 15:03:24,325 [INFO] - Remaining 5 transfers in plate p3 skipped
+2020-07-03 15:03:24,325 [INFO] - TransferProtocol complete
+2020-07-03 15:03:34,682 [INFO] - CSV file good.csv loaded
+2020-07-03 15:03:34,723 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 15:03:36,879 [INFO] - transfer complete: 0a2631f8
+2020-07-03 15:03:37,325 [INFO] - transfer skipped: 0a2638ce
+2020-07-03 15:03:37,701 [INFO] - transfer failed: 0a263f54
+2020-07-03 15:03:38,078 [INFO] - transfer complete: 0a264512
+2020-07-03 15:03:38,433 [INFO] - transfer complete: 0a264ac6
+2020-07-03 15:03:38,434 [INFO] - Plate p1 completed
+2020-07-03 15:03:41,339 [INFO] - Cannot update transfer: 0a264ac6, status is already marked as completed
+2020-07-03 15:03:41,340 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 15:03:41,798 [INFO] - Plate p2 loaded
+2020-07-03 15:03:48,934 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 15:03:48,934 [INFO] - Remaining 4 transfers in plate p2 skipped
+2020-07-03 15:03:48,935 [INFO] - Plate p3 loaded
+2020-07-03 15:03:56,138 [INFO] - transfer complete: 0a26bc22
+2020-07-03 15:03:56,411 [INFO] - transfer complete: 0a26c424
+2020-07-03 15:04:08,051 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 15:04:11,947 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 15:04:11,949 [INFO] - Remaining 4 transfers in plate p3 skipped
+2020-07-03 15:04:11,949 [INFO] - TransferProtocol complete
+2020-07-03 15:10:33,334 [INFO] - Log Started
+2020-07-03 15:10:33,381 [INFO] - CSV file good.csv loaded
+2020-07-03 15:10:33,412 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 15:17:00,626 [INFO] - Log Started
+2020-07-03 15:17:00,647 [INFO] - CSV file good.csv loaded
+2020-07-03 15:17:00,682 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:26:27,460 [INFO] - Log Started
+2020-07-03 18:26:27,528 [INFO] - CSV file good.csv loaded
+2020-07-03 18:26:27,578 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:26:27,715 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:26:52,015 [INFO] - transfer complete: 61d17db0
+2020-07-03 18:26:55,609 [INFO] - transfer skipped: 61d18634
+2020-07-03 18:27:08,677 [INFO] - transfer complete: 61d18c60
+2020-07-03 18:27:26,604 [INFO] - transfer skipped: 61d19232
+2020-07-03 18:27:26,847 [INFO] - transfer failed: 61d197f0
+2020-07-03 18:27:26,847 [INFO] - Plate p1 completed
+2020-07-03 18:27:27,096 [INFO] - Cannot update transfer: 61d197f0, status is already marked as failed
+2020-07-03 18:27:27,098 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:27:27,337 [INFO] - Cannot update transfer: 61d197f0, status is already marked as failed
+2020-07-03 18:27:27,342 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:27:27,732 [INFO] - Cannot update transfer: 61d197f0, status is already marked as failed
+2020-07-03 18:27:27,733 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:27:35,314 [INFO] - Cannot update transfer: 61d197f0, status is already marked as failed
+2020-07-03 18:27:35,315 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:27:37,834 [INFO] - Plate p2 loaded
+2020-07-03 18:27:44,935 [INFO] - transfer marked incomplete: 61d197f0
+2020-07-03 18:28:48,285 [INFO] - Log Started
+2020-07-03 18:28:48,319 [INFO] - CSV file good.csv loaded
+2020-07-03 18:28:48,371 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:28:48,482 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:28:48,624 [INFO] - transfer complete: b5b8f03e
+2020-07-03 18:28:49,206 [INFO] - transfer skipped: b5b8fd72
+2020-07-03 18:28:49,613 [INFO] - transfer failed: b5b903e4
+2020-07-03 18:28:50,001 [INFO] - transfer complete: b5b909ac
+2020-07-03 18:28:50,381 [INFO] - transfer complete: b5b90f56
+2020-07-03 18:28:50,381 [INFO] - Plate p1 completed
+2020-07-03 18:28:50,809 [INFO] - Cannot update transfer: b5b90f56, status is already marked as completed
+2020-07-03 18:28:50,812 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:28:51,818 [INFO] - Plate p2 loaded
+2020-07-03 18:28:56,015 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 18:29:00,335 [INFO] - Cannot undo previous operation
+2020-07-03 18:29:34,042 [INFO] - transfer complete: b5b92dd8
+2020-07-03 18:34:52,523 [INFO] - Log Started
+2020-07-03 18:34:52,566 [INFO] - CSV file good.csv loaded
+2020-07-03 18:34:52,609 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:34:52,859 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:35:02,744 [INFO] - transfer complete: 8ee828f2
+2020-07-03 18:35:03,305 [INFO] - transfer skipped: 8ee831b2
+2020-07-03 18:35:03,894 [INFO] - transfer failed: 8ee83806
+2020-07-03 18:35:04,668 [INFO] - transfer complete: 8ee83df6
+2020-07-03 18:35:05,276 [INFO] - transfer complete: 8ee843b4
+2020-07-03 18:35:05,276 [INFO] - Plate p1 completed
+2020-07-03 18:35:05,884 [INFO] - Cannot update transfer: 8ee843b4, status is already marked as completed
+2020-07-03 18:35:05,885 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:35:10,946 [INFO] - Plate p2 loaded
+2020-07-03 18:35:15,124 [INFO] - Cannot undo previous operation
+2020-07-03 18:35:17,031 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 18:35:19,056 [INFO] - Cannot undo previous operation
+2020-07-03 18:35:33,322 [INFO] - transfer complete: 8ee8657e
+2020-07-03 18:35:33,904 [INFO] - transfer skipped: 8ee870aa
+2020-07-03 18:35:34,472 [INFO] - transfer failed: 8ee87726
+2020-07-03 18:35:34,919 [INFO] - transfer complete: 8ee87ee2
+2020-07-03 18:35:34,920 [INFO] - Plate p2 completed
+2020-07-03 18:35:38,237 [INFO] - Cannot update transfer: 8ee87ee2, status is already marked as completed
+2020-07-03 18:35:38,242 [INFO] - Plate p2 is complete, press next plate to continue
+2020-07-03 18:35:49,304 [INFO] - transfer marked incomplete: 8ee87726
+2020-07-03 18:35:51,589 [INFO] - transfer complete: 8ee87726
+2020-07-03 18:35:54,069 [INFO] - Plate p3 loaded
+2020-07-03 18:36:23,627 [INFO] - transfer complete: 8ee89d28
+2020-07-03 18:36:27,345 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 18:36:30,470 [INFO] - transfer complete: 8ee8a340
+2020-07-03 18:36:31,594 [INFO] - transfer complete: 8ee8a912
+2020-07-03 18:36:32,422 [INFO] - transfer complete: 8ee8b394
+2020-07-03 18:36:33,247 [INFO] - transfer complete: 8ee8c064
+2020-07-03 18:36:33,248 [INFO] - TransferProtocol complete
+2020-07-03 18:38:22,764 [INFO] - Log Started
+2020-07-03 18:38:22,791 [INFO] - CSV file good.csv loaded
+2020-07-03 18:38:22,838 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:38:22,955 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:38:22,967 [INFO] - transfer complete: 0c229b4a
+2020-07-03 18:38:23,022 [INFO] - transfer skipped: 0c22a360
+2020-07-03 18:38:23,070 [INFO] - transfer failed: 0c22a91e
+2020-07-03 18:38:23,140 [INFO] - transfer complete: 0c22aeaa
+2020-07-03 18:38:23,169 [INFO] - transfer complete: 0c22b418
+2020-07-03 18:38:23,174 [INFO] - Plate p1 completed
+2020-07-03 18:38:23,200 [INFO] - Cannot update transfer: 0c22b418, status is already marked as completed
+2020-07-03 18:38:23,202 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:38:29,941 [INFO] - Plate p2 loaded
+2020-07-03 18:38:43,406 [INFO] - transfer complete: 0c22cfac
+2020-07-03 18:39:02,288 [INFO] - transfer complete: 0c22d588
+2020-07-03 18:39:15,792 [INFO] - Log Started
+2020-07-03 18:39:15,813 [INFO] - CSV file good.csv loaded
+2020-07-03 18:39:15,829 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:39:15,946 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:39:15,955 [INFO] - transfer complete: 2bb825a6
+2020-07-03 18:39:15,983 [INFO] - transfer skipped: 2bb8379e
+2020-07-03 18:39:16,161 [INFO] - transfer failed: 2bb83f0a
+2020-07-03 18:39:16,504 [INFO] - transfer complete: 2bb84acc
+2020-07-03 18:39:16,866 [INFO] - transfer complete: 2bb8559e
+2020-07-03 18:39:16,866 [INFO] - Plate p1 completed
+2020-07-03 18:39:17,264 [INFO] - Cannot update transfer: 2bb8559e, status is already marked as completed
+2020-07-03 18:39:17,265 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:39:28,326 [INFO] - Log Started
+2020-07-03 18:39:28,348 [INFO] - CSV file good.csv loaded
+2020-07-03 18:39:28,366 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:39:28,474 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:39:28,667 [INFO] - transfer complete: 332fce2e
+2020-07-03 18:39:29,186 [INFO] - transfer skipped: 332fd6b2
+2020-07-03 18:39:29,694 [INFO] - transfer failed: 332fdcc0
+2020-07-03 18:39:30,333 [INFO] - transfer complete: 332fe288
+2020-07-03 18:39:34,111 [INFO] - transfer complete: 332fe800
+2020-07-03 18:39:34,112 [INFO] - Plate p1 completed
+2020-07-03 18:39:49,019 [INFO] - Cannot update transfer: 332fe800, status is already marked as completed
+2020-07-03 18:39:49,019 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:39:55,017 [INFO] - transfer marked incomplete: 332fe288
+2020-07-03 18:40:08,722 [INFO] - Cannot undo previous operation
+2020-07-03 18:40:12,651 [INFO] - transfer complete: 332fe288
+2020-07-03 18:40:30,638 [INFO] - Log Started
+2020-07-03 18:40:30,804 [INFO] - CSV file good.csv loaded
+2020-07-03 18:40:30,852 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:40:30,931 [INFO] - transfer complete: 585defc8
+2020-07-03 18:40:31,074 [INFO] - transfer skipped: 585df6d0
+2020-07-03 18:40:31,230 [INFO] - transfer failed: 585dfd24
+2020-07-03 18:40:31,438 [INFO] - transfer complete: 585e0ad0
+2020-07-03 18:40:44,869 [INFO] - transfer marked incomplete: 585e0ad0
+2020-07-03 18:40:56,054 [INFO] - transfer complete: 585e0ad0
+2020-07-03 18:41:05,268 [INFO] - transfer marked incomplete: 585e0ad0
+2020-07-03 18:41:16,796 [INFO] - transfer complete: 585e0ad0
+2020-07-03 18:41:23,961 [INFO] - transfer marked incomplete: 585e0ad0
+2020-07-03 18:41:33,392 [INFO] - transfer complete: 585e0ad0
+2020-07-03 18:41:34,875 [INFO] - transfer complete: 585e123c
+2020-07-03 18:41:34,876 [INFO] - Plate p1 completed
+2020-07-03 18:43:34,310 [INFO] - Cannot update transfer: 585e123c, status is already marked as completed
+2020-07-03 18:43:34,312 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 18:43:49,431 [INFO] - transfer marked incomplete: 585e0ad0
+2020-07-03 18:54:12,798 [INFO] - Log Started
+2020-07-03 18:54:12,819 [INFO] - CSV file good.csv loaded
+2020-07-03 18:54:12,843 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 18:54:12,985 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 18:54:12,994 [INFO] - transfer complete: 426599ee
+2020-07-03 18:54:13,017 [INFO] - transfer skipped: 4265a22c
+2020-07-03 18:54:13,053 [INFO] - transfer failed: 4265a812
+2020-07-03 18:54:13,089 [INFO] - transfer complete: 4265ada8
+2020-07-03 18:54:17,241 [INFO] - transfer complete: 4265b320
+2020-07-03 18:54:17,244 [INFO] - Plate p1 completed
+2020-07-03 18:54:40,131 [INFO] - transfer marked incomplete: 4265b320
+2020-07-03 18:54:53,333 [INFO] - Cannot undo previous operation
+2020-07-03 18:54:58,198 [INFO] - Plate p2 loaded
+2020-07-03 22:06:27,467 [INFO] - Log Started
+2020-07-03 22:06:27,558 [INFO] - CSV file good.csv loaded
+2020-07-03 22:06:27,593 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:06:27,708 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:06:27,830 [INFO] - transfer complete: 1da08aae
+2020-07-03 22:06:28,577 [INFO] - Cannot update transfer: 1da08aae, status is already marked as completed
+2020-07-03 22:06:29,506 [INFO] - Cannot update transfer: 1da08aae, status is already marked as completed
+2020-07-03 22:10:40,184 [INFO] - Log Started
+2020-07-03 22:10:40,218 [INFO] - CSV file good.csv loaded
+2020-07-03 22:10:40,271 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:10:40,523 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:10:43,166 [INFO] - transfer skipped: b450ea70
+2020-07-03 22:19:31,035 [INFO] - Log Started
+2020-07-03 22:19:31,137 [INFO] - CSV file good.csv loaded
+2020-07-03 22:19:31,172 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:19:31,439 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:19:59,578 [INFO] - transfer skipped: f0c4748a
+2020-07-03 22:21:12,099 [INFO] - transfer skipped: f0c47d68
+2020-07-03 22:21:12,511 [INFO] - transfer failed: f0c483c6
+2020-07-03 22:21:12,872 [INFO] - transfer complete: f0c489a2
+2020-07-03 22:21:13,272 [INFO] - transfer complete: f0c48f4c
+2020-07-03 22:21:13,273 [INFO] - Plate p1 completed
+2020-07-03 22:21:13,675 [INFO] - Cannot update transfer: f0c48f4c, status is already marked as completed
+2020-07-03 22:21:13,676 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-03 22:24:59,543 [INFO] - Log Started
+2020-07-03 22:24:59,567 [INFO] - CSV file good.csv loaded
+2020-07-03 22:24:59,627 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:24:59,916 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:24:59,953 [INFO] - transfer skipped: b48dc52e
+2020-07-03 22:24:59,967 [INFO] - transfer failed: b48dcd8a
+2020-07-03 22:25:04,004 [INFO] - transfer complete: b48dd384
+2020-07-03 22:25:33,077 [INFO] - Log Started
+2020-07-03 22:25:33,122 [INFO] - CSV file good.csv loaded
+2020-07-03 22:25:33,158 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:25:33,425 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:25:33,498 [INFO] - transfer skipped: c8866054
+2020-07-03 22:25:33,515 [INFO] - transfer failed: c8866932
+2020-07-03 22:25:33,707 [INFO] - transfer complete: c886754e
+2020-07-03 22:25:34,118 [INFO] - transfer complete: c88680ca
+2020-07-03 22:25:34,495 [INFO] - transfer complete: c8868b1a
+2020-07-03 22:25:34,495 [INFO] - Plate p1 completed
+2020-07-03 22:25:34,944 [INFO] - Plate p2 loaded
+2020-07-03 22:25:39,742 [INFO] - Cannot undo previous operation
+2020-07-03 22:26:23,567 [INFO] - transfer skipped: c886b270
+2020-07-03 22:31:56,192 [INFO] - transfer skipped: c886b270
+2020-07-03 22:37:52,392 [INFO] - Log Started
+2020-07-03 22:37:52,549 [INFO] - CSV file good.csv loaded
+2020-07-03 22:37:52,605 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:37:52,998 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:37:53,053 [INFO] - transfer skipped: 8158d0a2
+2020-07-03 22:37:53,072 [INFO] - transfer failed: 8158de8a
+2020-07-03 22:37:56,250 [INFO] - transfer complete: 8158e600
+2020-07-03 22:37:56,550 [INFO] - transfer complete: 8158ecae
+2020-07-03 22:37:56,845 [INFO] - transfer complete: 8158f2ee
+2020-07-03 22:37:56,845 [INFO] - Plate p1 completed
+2020-07-03 22:37:57,216 [INFO] - Plate p2 loaded
+2020-07-03 22:38:01,243 [INFO] - Cannot undo previous operation
+2020-07-03 22:38:06,405 [INFO] - transfer complete: 81592214
+2020-07-03 22:38:15,826 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 22:38:15,826 [INFO] - Remaining 4 transfers in plate p2 skipped
+2020-07-03 22:41:31,360 [INFO] - Log Started
+2020-07-03 22:41:31,442 [INFO] - CSV file good.csv loaded
+2020-07-03 22:41:31,496 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 22:41:31,788 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 22:41:31,835 [INFO] - transfer skipped: 03c17dbe
+2020-07-03 22:41:31,866 [INFO] - transfer failed: 03c193b2
+2020-07-03 22:41:31,880 [INFO] - transfer complete: 03c19b96
+2020-07-03 22:41:31,899 [INFO] - transfer complete: 03c1a244
+2020-07-03 22:41:31,916 [INFO] - transfer complete: 03c1a8e8
+2020-07-03 22:41:31,917 [INFO] - Plate p1 completed
+2020-07-03 22:41:31,935 [INFO] - Plate p2 loaded
+2020-07-03 22:42:04,229 [INFO] - Warning: Plate p2 not yet complete
+2020-07-03 22:42:04,232 [INFO] - Remaining 4 transfers in plate p2 skipped
+2020-07-03 22:42:04,232 [INFO] - Plate p3 loaded
+2020-07-03 22:42:57,992 [INFO] - transfer complete: 03c215a8
+2020-07-03 22:42:58,626 [INFO] - transfer complete: 03c22106
+2020-07-03 22:43:10,560 [INFO] - transfer marked incomplete: 03c22106
+2020-07-03 22:43:15,197 [INFO] - Warning: Plate p3 not yet complete
+2020-07-03 22:43:20,344 [INFO] - transfer complete: 03c22106
+2020-07-03 23:53:15,273 [INFO] - Log Started
+2020-07-03 23:53:15,310 [INFO] - CSV file good.csv loaded
+2020-07-03 23:53:15,356 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-03 23:53:15,611 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-03 23:53:15,670 [INFO] - transfer skipped: 09088bf0
+2020-07-03 23:53:15,716 [INFO] - transfer failed: 09089f32
+2020-07-03 23:53:15,753 [INFO] - transfer complete: 0908abe4
+2020-07-03 23:53:15,767 [INFO] - transfer complete: 0908d966
+2020-07-03 23:53:15,781 [INFO] - transfer complete: 0908f84c
+2020-07-03 23:53:15,782 [INFO] - Plate p1 completed
+2020-07-03 23:53:21,331 [INFO] - Plate p2 loaded
+2020-07-04 09:29:43,900 [INFO] - Log Started
+2020-07-04 09:29:44,068 [INFO] - CSV file good.csv loaded
+2020-07-04 09:29:44,128 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-04 09:29:47,236 [INFO] - transfer skipped: 9164a182
+2020-07-04 09:29:47,644 [INFO] - transfer failed: 9164d0bc
+2020-07-04 09:29:47,949 [INFO] - transfer complete: 9164f38a
+2020-07-04 09:29:48,287 [INFO] - transfer complete: 91650dc0
+2020-07-04 09:29:48,836 [INFO] - transfer complete: 91652396
+2020-07-04 09:29:48,836 [INFO] - Plate p1 completed
+2020-07-04 09:29:51,244 [INFO] - Cannot update transfer: 91652396, status is already marked as completed
+2020-07-04 09:29:51,245 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-04 09:29:54,061 [INFO] - Plate p2 loaded
+2020-07-04 09:29:56,459 [INFO] - transfer skipped: 916595d8
+2020-07-04 09:29:56,806 [INFO] - transfer failed: 9165ae06
+2020-07-04 09:29:57,161 [INFO] - transfer complete: 9165b590
+2020-07-04 09:29:57,542 [INFO] - transfer complete: 9165bbc6
+2020-07-04 09:30:04,673 [INFO] - transfer skipped: 9165fe2e
+2020-07-04 09:32:39,629 [INFO] - Log Started
+2020-07-04 09:32:39,939 [INFO] - CSV file good.csv loaded
+2020-07-04 09:32:39,996 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-04 09:32:40,857 [INFO] - transfer skipped: fa3715a0
+2020-07-04 09:32:41,344 [INFO] - transfer failed: fa371c08
+2020-07-04 09:32:41,681 [INFO] - transfer complete: fa3721a8
+2020-07-04 09:32:42,419 [INFO] - transfer complete: fa3727f2
+2020-07-04 09:32:44,752 [INFO] - transfer complete: fa372d60
+2020-07-04 09:32:44,752 [INFO] - Plate p1 completed
+2020-07-04 09:32:48,333 [INFO] - Cannot update transfer: fa372d60, status is already marked as completed
+2020-07-04 09:32:48,333 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-04 09:32:48,817 [INFO] - Cannot update transfer: fa372d60, status is already marked as completed
+2020-07-04 09:32:48,818 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-04 09:32:49,196 [INFO] - Cannot update transfer: fa372d60, status is already marked as completed
+2020-07-04 09:32:49,197 [INFO] - Plate p1 is complete, press next plate to continue
+2020-07-04 09:32:51,163 [INFO] - Plate p2 loaded
+2020-07-04 09:32:53,174 [INFO] - transfer skipped: fa374962
+2020-07-04 09:32:53,806 [INFO] - transfer failed: fa374f98
+2020-07-04 09:32:54,414 [INFO] - transfer complete: fa375574
+2020-07-04 09:32:54,962 [INFO] - transfer complete: fa375b3c
+2020-07-04 09:32:55,513 [INFO] - transfer complete: fa399244
+2020-07-04 09:35:00,646 [INFO] - Log Started
+2020-07-04 09:35:00,838 [INFO] - CSV file good.csv loaded
+2020-07-04 09:35:00,885 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-04 09:35:01,545 [INFO] - transfer skipped: 4e32bc68
+2020-07-04 09:35:09,540 [INFO] - Log Started
+2020-07-04 09:35:09,570 [INFO] - CSV file good.csv loaded
+2020-07-04 09:35:09,631 [INFO] - NumExpr defaulting to 4 threads.
+2020-07-04 09:35:09,977 [INFO] - TransferProtocol with 14 transfers in 3 plates created
+2020-07-04 09:35:10,065 [INFO] - transfer skipped: 539d5500
+2020-07-04 09:35:10,079 [INFO] - transfer failed: 539d5d48
+2020-07-04 09:35:10,096 [INFO] - transfer complete: 539d6310
+2020-07-04 09:35:10,122 [INFO] - transfer complete: 539d68a6
+2020-07-04 09:35:19,548 [INFO] - transfer complete: 539d6f22
+2020-07-04 09:35:19,549 [INFO] - Plate p1 completed
+2020-07-04 09:35:48,238 [INFO] - Plate p2 loaded
+2020-07-04 09:36:01,026 [INFO] - Warning: Plate p2 not yet complete
+2020-07-04 11:34:43,081 [INFO] - transfer skipped: 539d8ade
+2020-07-04 11:34:43,490 [INFO] - transfer failed: 539d90ce
+2020-07-04 11:34:43,886 [INFO] - transfer complete: 539d9664
+2020-07-04 11:34:44,258 [INFO] - transfer complete: 539da104
+2020-07-04 11:34:44,711 [INFO] - transfer complete: 539dbedc
+2020-07-04 12:00:25,273 [INFO] - Warning: Plate p2 not yet complete
