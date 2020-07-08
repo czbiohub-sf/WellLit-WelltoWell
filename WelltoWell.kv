@@ -1,0 +1,99 @@
+#:kivy 1.11.1
+#:import FigureCanvasKivyAgg kivy.garden.matplotlib.backend_kivyagg
+#:import plt matplotlib.pyplot
+
+<ConfirmPopup>:
+	size_hint: None,None
+	height: 400
+	width: 500
+	title: 'Confirm exit'
+
+<WellLitPopup>:
+	size_hint: None,None
+	height: 400
+	width: 800
+
+<MetaLabel>:
+	text_size: self.size
+	halign: 'left'
+	padding_x: 5
+	markup: True
+	font_size: 20
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: 'vertical'
+        FileChooserListView:
+            id: filechooser
+            path: 'C:/Users/andrew.cote/Documents/WellLit_to_WellLit/experiments'
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: 'Cancel'
+                on_release: root.cancel()
+            Button:
+                text: 'Load'
+                on_release: root.load(filechooser.path, filechooser.selection)
+
+<Button>
+	font_size: 30
+
+<Well2WellWidget>:
+	BoxLayout:
+		orientation: 'vertical'
+		size_hint: 0.375, 1
+		pos_hint: {'left': 1, 'top': 1}
+        Button:
+            text: 'Load Transfer'
+            on_press: root.show_load()
+            size_hint: 1, 0.2
+        Button:
+            text: 'Abort Transfer'
+            on_press: root.abortTransfer()
+            size_hint: 1, 0.2
+        Label:
+            text: ''
+            size_hint: 1, 0.15
+        Button:
+            text: 'Next Plate'
+            size_hint: 1, 0.3
+            on_press: root.nextPlate()
+        Label:
+            text: ''
+            size_hint: 1, 0.15
+        BoxLayout:
+            orientation: 'horizontal'
+            Button:
+                text: 'Undo'
+                size_hint: 1, 0.2
+                on_press: root.undo()
+            Button:
+                text: 'Skip'
+                size_hint: 1, 0.2
+                on_press: root.skip()
+            Button:
+                text: 'Failed'
+                size_hint: 1, 0.2
+                on_press: root.failed()
+        Button:
+            text: 'Next'
+            size_hint: 1, 1
+            pos_hint: {'left': 1, 'bottom': 1}
+            on_press: root.next()
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 0.625, 1
+        pos_hint: {'right': 1}
+        WellPlot:
+            shape: 'square'
+            id: source_plate
+            size_hint: 1, 0.5
+        WellPlot:
+            shape: 'circle'
+            id: dest_plate
+            size_hint: 1, 0.5
