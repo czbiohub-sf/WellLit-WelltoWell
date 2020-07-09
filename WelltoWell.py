@@ -240,7 +240,7 @@ class WellToWell:
 			hasDupes = True
 
 		for element in duplicates:
-			subset = self.df.where(df['TargetWell'] == element).dropna()
+			subset = self.df.where(self.df['TargetWell'] == element).dropna()
 
 			indices = []
 			for index, row in subset.iterrows():

@@ -22,8 +22,6 @@ logging.basicConfig(
     format='%(asctime)s [%(levelname)s] - %(message)s',
     filename='filename.txt')  # pass explicit filename here
 logger = logging.getLogger()  # get the root logger
-logger.warning('This should go in the file.')
-
 
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
@@ -101,8 +99,18 @@ class WelltoWellWidget(WellLitWidget):
         self.updateLights()
 
 
-
-
 class WelltoWellApp(App):
     def build(self):
-        return WellLitWidget()
+        return WelltoWellWidget()
+
+
+if __name__ == '__main__':
+    cwd = os.getcwd()
+    logging.basicConfig(filename=cwd + '\WelltoWell_log.log',
+                        format='%(asctime)s %(levelname)-8s %(message)s',
+                        level=logging.INFO,
+                        datefmt='%Y-%m-%d %H:%M:%S')
+    logging.info('Session started')
+    Window.size = (1600, 1200)
+    # Window.fullscreen = True
+    WelltoWellApp().run()
