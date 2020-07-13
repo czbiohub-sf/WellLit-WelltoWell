@@ -34,7 +34,11 @@ class WelltoWellWidget(WellLitWidget):
     def __init__(self, **kwargs):
         super(WelltoWellWidget, self).__init__(**kwargs)
         self.wtw = WelltoWell()
+        self.msg = 'some message'
         self.initialized = False
+
+    def getStatus(self):
+        return self.msg
 
     def load(self, path, filename):
         target = (os.path.join(str(path), str(filename[0])))
@@ -58,10 +62,6 @@ class WelltoWellWidget(WellLitWidget):
         self._popup = Popup(title='Load File', content=content, size_hint=(0.5, 0.5))
         self._popup.open()
 
-    def reset_plates(self):
-        self.ids.source_plate.initialize()
-        self.ids.dest_plate.initialize()
-
     def updateLights(self):
         '''
         At each step:
@@ -70,8 +70,9 @@ class WelltoWellWidget(WellLitWidget):
         color current target wells, and black out wells not involved in transfer
         '''
         if self.initialized:
-            self.ids.source_plate.pl.emptyWells()
-            self.ids.dest_plate.pl.emptyWells()
+            self.ids.source_plate.pl.blackoutWells()
+            self.ids.dest_plate.pl.blackoutWells()
+
             current_transfers = self.wtw.tp.transfers_by_plate[self.wtw.tp.current_plate_name]
 
             # For transfer that is complete, color source well empty and dest well as full
@@ -80,9 +81,10 @@ class WelltoWellWidget(WellLitWidget):
                 if tf_id in current_transfers:
                     self.ids.source_plate.pl.markEmpty(self.wtw.tp.transfers[tf_id]['source_well'])
 
-            # For transfer that is uncomplete, mark source well as full
+            # For transfer that is uncomplete, mark source well as full, dest well as empty
             for tf_id in list(set(current_transfers) & set(self.wtw.tp.lists['uncompleted'])):
                 self.ids.source_plate.pl.markFilled(self.wtw.tp.transfers[tf_id]['source_well'])
+                self.ids.dest_plate.pl.markEmpty(self.wtw.tp.transfers[tf_id]['dest_well'])
 
             # Mark current targets
             self.ids.source_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['source_well'])
@@ -90,14 +92,6 @@ class WelltoWellWidget(WellLitWidget):
 
             self.ids.source_plate.pl.show()
             self.ids.dest_plate.pl.show()
-
-
-    def showPopup(self, error, title: str, func=None):
-        self._popup = WellLitPopup()
-        self._popup.size_hint = (0.3, .7)
-        self._popup.pos_hint = {'x': 10.0 / Window.width, 'y': 100 / Window.height}
-        self._popup.title = title
-        self._popup.show(error.__str__(), func=func)
 
     def next(self):
         try:
@@ -137,6 +131,16 @@ class WelltoWellWidget(WellLitWidget):
             self.showPopup(conf, 'Confirm finish plate', func=self.nextPlateConfirm)
             self.updateLights()
 
+    def nextPlateConfirm(self, _):
+        try:
+            self.wtw.nextPlateConfirm()
+            self.updateLights()
+        except TError as err:
+            self.showPopup(err, 'Cannot load next plate')
+        except TConfirm as conf:
+            self.showPopup(conf, 'Load next plate')
+            self.updateLights()
+
     def nextPlateOverride(self, _):
         try:
             self.wtw.nextPlateOverride()
@@ -148,19 +152,10 @@ class WelltoWellWidget(WellLitWidget):
             self.showPopup(conf, 'Plate skipped')
             self.updateLights()
 
-    def nextPlateConfirm(self, _):
-        try:
-            self.wtw.nextPlateConfirm()
-            self.updateLights()
-        except TError as err:
-            self.showPopup(err, 'Cannot load next plate')
-        except TConfirm as conf:
-            self.showPopup(conf, 'Load next plate')
-            self.updateLights()
-
     def abortTransfer(self):
         if self.initialized:
-            self.showPopup(TConfirm('Are you sure you wish to abort this transfer?'), 'Confirm transfer abort', func=self.abortTransferConfirm)
+            self.showPopup(TConfirm('Are you sure you wish to abort this transfer?'), 'Confirm transfer abort',
+                           func=self.abortTransferConfirm)
 
     def abortTransferConfirm(self, _):
         try:
@@ -168,7 +163,8 @@ class WelltoWellWidget(WellLitWidget):
             self.ids.dest_plate.pl.emptyWells()
             self.ids.source_plate.pl.show()
             self.ids.dest_plate.pl.show()
-            self.showPopup(TConfirm('Would you like to generate a log file of the aborted protocol?'), 'Produce record', func=self.wtw.writeTransferRecordFiles)
+            self.showPopup(TConfirm('Would you like to generate a log file of the aborted protocol?'), 'Produce record',
+                           func=self.wtw.writeTransferRecordFiles)
         except TError as err:
             self.showPopup(err, 'Error aborting transfer')
 
@@ -183,13 +179,14 @@ if __name__ == '__main__':
     logdir = os.getcwd() + '/logs/'
     logfile = 'WelltoWell_Logfile_' + datetime.utcnow().strftime('%Y_%m_%d') + '.txt'
     print(logdir + logfile)
-
+    '''
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s [%(levelname)s] - %(message)s',
         filename=logdir + logfile)  # pass explicit filename here
     logger = logging.getLogger()  # get the root loggers
     logging.info('Session started')
+    '''
     Window.size = (1600, 1200)
     # Window.fullscreen = True
     WellToWellApp().run()

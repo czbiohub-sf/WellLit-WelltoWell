@@ -82,9 +82,13 @@
                 on_press: root.failed()
         Button:
             text: 'Next'
-            size_hint: 1, 1
+            size_hint: 1, 0.8
             pos_hint: {'left': 1, 'bottom': 1}
             on_press: root.next()
+        Label:
+            text: 'example status'
+            size_hint: 1, 0.2
+            pos_hint: {'left': 1, 'bottom': 1}
 
     BoxLayout:
         orientation: 'vertical'
