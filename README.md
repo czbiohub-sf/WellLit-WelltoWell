@@ -7,9 +7,9 @@ WelltoWell implementation of the WellLit library
 2. Make anaconda environment: Open up anaconda prompt and type: conda create -n WellLit python=3.7.6
 3. Activate the environment with conda activate WellLit
 4. Install dependencies:
-  conda install matplotlib==3.1.3
-  conda install -c conda-forge kivy
-  pip install kivy-garden
-  garden install graph
-  garden install matplotlib
+  - conda install matplotlib==3.1.3
+  - conda install -c conda-forge kivy
+  - pip install kivy-garden
+  - garden install graph
+  - garden install matplotlib
 5. Clone this repo https://github.com/czbiohub/WellLit-WelltoWell.git
