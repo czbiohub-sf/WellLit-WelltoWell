@@ -1,0 +1,9 @@
+{
+    "A1_X": 0.125,
+    "A1_Y": 0.00,
+    "size_param": {
+        "circle" : 0.024,
+        "square" : 0.025
+    },
+    "well_spacing": 0.06
+}
