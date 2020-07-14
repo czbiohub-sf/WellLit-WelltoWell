@@ -8,6 +8,7 @@ import csv, re, uuid, datetime
 import pandas as pd
 import numpy as np
 from datetime import datetime
+from pathlib import Path
 from WellLit.plateLighting import Well, PlateLighting
 from WellLit.Transfer import Transfer, TransferProtocol, TError, TStatus, TConfirm
 
@@ -28,16 +29,14 @@ class WelltoWell:
 	Raises TError if user incorrectly specifies csv source file, or uses gui before transfer is loaded
 	"""
 
-	def __init__(self, csv=None):
-		self.csv = csv
+	def __init__(self):
+		self.csv = ''
 		self.msg = ''
 		self.df = None
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
 
-		if self.csv is not None:
-			self.loadCsv(csv)
 
 	def tp_present(self):
 		if self.tp is not None:
@@ -82,27 +81,32 @@ class WelltoWell:
 		"""
 		Validates a csv file as being free of duplicates before loading constructing a TransferProtocol from it
 
-		:param csv: file to be uploaded
+		:param csv: absolute path to csv to be used
 
 		Raises TError if there are problems importing the file
 		Raises TConfirm if the file loads successfully
 		"""
 		try:
-			self.df = pd.read_csv(csv)
+			# read the first line of the csv as the destination plate name
+			print(csv)
+			self.dest_plate = list(pd.read_csv(csv, nrows=0))[0]
+			self.df = pd.read_csv(csv, skiprows=1)
 			self.log('CSV file %s loaded' % csv)
+			self.csv = csv
 		except:
 			self.log('Failed to load file csv \n %s' % csv)
 			raise TError(self.msg)
 
 		hasSourDupes, msg_s = self.checkDuplicateSource()
-		hasDestDupes, msg_d = self.checkDuplicateDestination()
+		# allow duplicates in destination
+		# hasDestDupes, msg_d = self.checkDuplicateDestination()
 
-		if hasSourDupes and hasDestDupes:
-			self.log('CSV file has duplicate wells in destinations and sources')
-			raise TError(self.msg)
-		if hasDestDupes:
-			self.log('CSV file has duplicate well destinations')
-			raise TError(self.msg)
+		# if hasSourDupes and hasDestDupes:
+		# 	self.log('CSV file has duplicate wells in destinations and sources')
+		# 	raise TError(self.msg)
+		# if hasDestDupes:
+		# 	self.log('CSV file has duplicate well destinations')
+		# 	raise TError(self.msg)
 		if hasSourDupes:
 			self.log('CSV file has duplicate well sources')
 			raise TError(self.msg)
@@ -111,7 +115,8 @@ class WelltoWell:
 			self.log('TransferProtocol with %s transfers \n in %s plates created' %
 					 (self.tp.num_transfers, self.tp.num_plates))
 			self.timestamp = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S')
-			raise TConfirm(self.msg)
+			load_plate_msg = '\n Please load plate ' + self.tp.current_plate_name + ' to begin'
+			raise TConfirm(self.msg + load_plate_msg)
 
 	def checkDuplicateDestination(self):
 		hasDupes = False
@@ -175,8 +180,8 @@ class WelltoWell:
 
 	def writeTransferRecordFiles(self, _):
 		path = os.getcwd() + '/records/'
-		filename = 'transfer_record_' + self.timestamp + '.csv'
-		print(path + filename)
+		csv_filename = Path(self.csv).stem
+		filename = csv_filename + '_' + 'transfer_record_' + self.timestamp + '.csv'
 		try:
 			with open(path + filename, mode='w') as logfile:
 				log_writer = csv.writer(logfile, delimiter=',')
@@ -207,6 +212,12 @@ class WTWTransferProtocol(TransferProtocol):
 			self.buildTransferProtocol(wtw, df)
 
 	def buildTransferProtocol(self, wtw, df):
+		"""
+		Builds a transfer protocol for well to well transfers
+		:param wtw: parent well to well object
+		:param df: pandas dataframe containing transfer information
+		:return:
+		"""
 		if df is not None:
 			self.plate_names = df['PlateName'].unique()
 
@@ -222,7 +233,7 @@ class WTWTransferProtocol(TransferProtocol):
 					unique_id = str(uuid.uuid1())
 
 					tf = Transfer(unique_id,
-								  source_plate=src_plt, dest_plate=dest_plt, source_well=src_well, dest_well=dest_well,)
+								  source_plate=src_plt, dest_plate=dest_plt, source_well=src_well, dest_well=dest_well)
 					plate_transfers.append(unique_id)
 					self.transfers[unique_id] = tf
 
@@ -263,16 +274,29 @@ class WTWTransferProtocol(TransferProtocol):
 			return True
 		else:
 			msg = ''
-			self.log('Cannot update transfer: %s \nStatus is already marked as %s \n' %
+			self.log('Cannot update transfer: %s Status is already marked as %s ' %
 					 (self.tf_id(), self.transfers[self.current_uid]['status']))
 			msg = self.msg
 			if self.plateComplete():
 				if self.protocolComplete():
-					self.log('Transfer Protocol complete \n')
+					self.log('Transfer Protocol complete ')
 					raise TError(msg + self.msg)
 				else:
-					self.log('Plate %s is complete, press next plate to continue \n' % self.current_plate_name)
+					self.log('Plate %s is complete, press next plate to continue ' % self.current_plate_name)
 					raise TError(msg + self.msg)
+
+
+	def complete(self):
+		"""
+		Complete current transfer. If plate is complete, raise TConfirm
+		"""
+		if self.plateComplete():
+			self.log('Plate %s is complete, load plate %s to continue')
+		if self.canUpdate():
+			self.transfers[self.current_uid].updateStatus(TStatus.completed)
+			self.log('transfer complete: %s' % self.tf_id())
+			self.step()
+
 
 	def step(self):
 		"""
@@ -300,12 +324,12 @@ class WTWTransferProtocol(TransferProtocol):
 		if self.plateComplete():
 			raise TConfirm('Are you sure you wish to finish the plate?')
 		else:
-			self.log('Warning: Plate %s not yet complete \n' % self.current_plate_name)
+			self.log('Warning: Plate %s not yet complete ' % self.current_plate_name)
 			skipped_transfers_in_plate = list(
 				set(self.lists['uncompleted']) &
 				set(self.transfers_by_plate[self.current_plate_name]))
 			msg = self.msg
-			self.log('Confirm to skip %s remaining transfers. \n Are you sure?' % len(
+			self.log('Confirm to skip %s remaining transfers.  Are you sure?' % len(
 				skipped_transfers_in_plate))
 			raise TError(msg + self.msg)
 
@@ -337,7 +361,7 @@ class WTWTransferProtocol(TransferProtocol):
 		self.log('Remaining %s transfers in plate %s skipped' %
 				 (len(skipped_transfers_in_plate), self.current_plate_name))
 		if self.protocolComplete():
-			raise TConfirm(self.msg + ' \n Protocol Complete')
+			raise TConfirm(self.msg + ' Protocol Complete')
 		else:
 			self.current_plate_increment()
 			self.current_idx_increment(steps=len(skipped_transfers_in_plate))

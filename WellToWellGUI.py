@@ -14,6 +14,7 @@ from kivy.properties import ObjectProperty, StringProperty
 from kivy.uix.widget import Widget
 from kivy.uix.filechooser import FileChooserListView
 from datetime import datetime
+from pathlib import Path
 import json, logging, time, os, time, csv
 from WellLit.WellLitGUI import WellLitWidget, ConfirmPopup, WellLitPopup, WellPlot
 from WellLit.Transfer import TError, TConfirm
@@ -46,7 +47,8 @@ class WelltoWellWidget(WellLitWidget):
         return self.msg
 
     def load(self, path, filename):
-        target = (os.path.join(str(path), str(filename[0])))
+        filename_csv  = str(filename[0])
+        target = (os.path.join(str(path), filename_csv))
         logging.info('User selected file %s to load' % target)
         self.dismiss_popup()
         if os.path.isfile(target):
@@ -69,7 +71,9 @@ class WelltoWellWidget(WellLitWidget):
 
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
-        self._popup = Popup(title='Load File', content=content, size_hint=(0.5, 0.5))
+        self._popup = Popup(title='Load File', content=content)
+        self._popup.size_hint = (0.4, .8)
+        self._popup.pos_hint = {'x': 10.0 / Window.width, 'y': 100 / Window.height}
         self._popup.open()
 
     def updateLights(self):
@@ -118,7 +122,7 @@ class WelltoWellWidget(WellLitWidget):
             self.showPopup(err, 'Unable to complete transfer')
             self.status = err.__str__()
         except TConfirm as conf:
-            self.showPopup(conf, '')
+            self.showPopup(conf, 'Plate complete', func=self.nextPlate)
             self.status = conf.__str__()
 
     def skip(self):
@@ -160,15 +164,14 @@ class WelltoWellWidget(WellLitWidget):
             self.showPopup(conf, '')
             self.status = conf.__str__()
 
-    def nextPlate(self):
+    def nextPlate(self, _):
         try:
             self.wtw.nextPlate()
         except TError as err:
             self.showPopup(err, 'Unable to complete plate', func=self.nextPlateOverride)
             self.status = err.__str__()
         except TConfirm as conf:
-            self.showPopup(conf, 'Confirm finish plate', func=self.nextPlateConfirm)
-            self.status = conf.__str__()
+            self.nextPlateConfirm(None)
             self.updateLights()
 
     def nextPlateConfirm(self, _):
@@ -181,7 +184,6 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, 'Load next plate')
-            self.status = conf.__str__()
             self.updateLabels()
             self.updateLights()
 
@@ -199,14 +201,17 @@ class WelltoWellWidget(WellLitWidget):
             self.status = conf.__str__()
             self.updateLights()
 
-    def abortTransfer(self):
+    def finishTransfer(self):
         if self.initialized:
-            self.showPopup(TConfirm(
-                'Are you sure you wish to finish this transfer protocol? \n All remaining transfers will be skipped'),
-                           'Confirm transfer abort',
-                           func=self.abortTransferConfirm)
+            if not self.wtw.tp.protocolComplete():
+                self.showPopup(TConfirm(
+                    'Are you sure you wish to finish this transfer protocol? All remaining transfers will be skipped'),
+                               'Confirm transfer abort',
+                               func=self.finishTransferConfirm)
+            else:
+                self.finishTransferConfirm(None)
 
-    def abortTransferConfirm(self, _):
+    def finishTransferConfirm(self, _):
         try:
             self.ids.source_plate.pl.emptyWells()
             self.ids.dest_plate.pl.emptyWells()
@@ -242,12 +247,11 @@ if __name__ == '__main__':
     cwd = os.getcwd()
     logdir = os.getcwd() + '/logs/'
     logfile = 'WelltoWell_Logfile_' + datetime.utcnow().strftime('%Y_%m_%d') + '.txt'
-    print(logdir + logfile)
 
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s [%(levelname)s] - %(message)s',
-        filename=logdir + logfile)  # pass explicit filename here
+        filename=Path(logdir + logfile))  # pass explicit filename here
     logger = logging.getLogger()  # get the root loggers
     logging.info('Session started')
 

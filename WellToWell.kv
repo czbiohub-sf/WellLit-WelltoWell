@@ -9,7 +9,7 @@
 	title: 'Confirm exit'
 
 <WellLitPopup>:
-	size_hint: None,None
+	size_hint: 0.3, 0.8
 	font_size: 30
 	height: 400
 	width: 800
@@ -54,7 +54,7 @@
             size_hint: 1, 0.2
         Button:
             text: 'Finish Transfer Protocol'
-            on_press: root.abortTransfer()
+            on_press: root.finishTransfer()
             size_hint: 1, 0.2
         Label:
             text: ''
@@ -62,7 +62,7 @@
         Button:
             text: 'Next Plate'
             size_hint: 1, 0.3
-            on_press: root.nextPlate()
+            on_press: root.nextPlate(None)
         BoxLayout:
             orientation: 'horizontal'
             size_hint: 1, 0.2
@@ -75,6 +75,37 @@
         Label:
             text: ''
             size_hint: 1, 0.2
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, 0.4
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Source Plate'
+                    font_size: 30
+                    font_name: 'Roboto-Bold'
+                Label:
+                    text: root.source_plate
+                    font_size: 30
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Destination Plate'
+                    font_size: 30
+                    font_name: 'Roboto-Bold'
+                Label:
+                    text: root.dest_plate
+                    font_size: 30
+        Label:
+            text: ''
+            size_hint: 1, 0.3
+        Label:
+            size_hint: 1, 0.3
+            halign: 'center'
+            valign: 'center'
+            text: root.status
+            text_size: sp(500), sp(800)
+            font_size: 30
         BoxLayout:
             orientation: 'horizontal'
             Button:
@@ -94,30 +125,7 @@
             size_hint: 1, 0.8
             pos_hint: {'left': 1, 'bottom': 1}
             on_press: root.next()
-        BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, 0.4
-            BoxLayout:
-                orientation: 'horizontal'
-                Label:
-                    text: 'Source Plate'
-                    font_size: 20
-                    font_name: 'Roboto-Bold'
-                Label:
-                    text: root.source_plate
-            BoxLayout:
-                orientation: 'horizontal'
-                Label:
-                    text: 'Destination Plate'
-                    font_size: 20
-                    font_name: 'Roboto-Bold'
-                Label:
-                    text: root.dest_plate
 
-        Label:
-            text: root.status
-            halign: 'left'
-            size_hint: 1, 0.2
 
     BoxLayout:
         orientation: 'vertical'
