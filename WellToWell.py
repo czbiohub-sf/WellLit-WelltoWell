@@ -34,6 +34,7 @@ class WelltoWell:
 		self.df = None
 		self.tp = None
 		self.timestamp = ''
+		self.dest_plate = ''
 
 		if self.csv is not None:
 			self.loadCsv(csv)
@@ -106,7 +107,7 @@ class WelltoWell:
 			self.log('CSV file has duplicate well sources')
 			raise TError(self.msg)
 		else:
-			self.tp = WTWTransferProtocol(df=self.df)
+			self.tp = WTWTransferProtocol(wtw=self, df=self.df)
 			self.log('TransferProtocol with %s transfers \n in %s plates created' %
 					 (self.tp.num_transfers, self.tp.num_plates))
 			self.timestamp = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S')
@@ -173,7 +174,6 @@ class WelltoWell:
 			self.df = None
 
 	def writeTransferRecordFiles(self, _):
-		self.log('Generating records for ' + str(len(self.tp.transfers)) + ' transfers')
 		path = os.getcwd() + '/records/'
 		filename = 'transfer_record_' + self.timestamp + '.csv'
 		print(path + filename)
@@ -198,15 +198,15 @@ class WTWTransferProtocol(TransferProtocol):
 
 	Raises TError if user tries to skip incomplete source plate
 	"""
-	def __init__(self, df=None, **kwargs):
+	def __init__(self, wtw=None, df=None, **kwargs):
 		super(WTWTransferProtocol, self).__init__(**kwargs)
 		self.transfers_by_plate = {}
 		self.df = df
 		self.msg = ''
 		if self.df is not None:
-			self.buildTransferProtocol(df)
+			self.buildTransferProtocol(wtw, df)
 
-	def buildTransferProtocol(self, df):
+	def buildTransferProtocol(self, wtw, df):
 		if df is not None:
 			self.plate_names = df['PlateName'].unique()
 
@@ -216,7 +216,7 @@ class WTWTransferProtocol(TransferProtocol):
 				plate_transfers = []
 				for idx, plate_df_entry in plate_df.iterrows():
 					src_plt = plate_df_entry[0]
-					dest_plt = DEST
+					dest_plt = wtw.dest_plate
 					src_well = plate_df_entry[1]
 					dest_well = plate_df_entry[2]
 					unique_id = str(uuid.uuid1())
@@ -284,8 +284,10 @@ class WTWTransferProtocol(TransferProtocol):
 		if self.plateComplete():
 			if self.protocolComplete():
 				self.log('TransferProtocol is complete')
+				raise TConfirm(self.msg)
 			else:
 				self.log('Plate %s completed' % self.current_plate_name)
+				raise TConfirm(self.msg)
 		else:
 			self.current_idx_increment()
 
@@ -347,6 +349,8 @@ class WTWTransferProtocol(TransferProtocol):
 		for tf in self.transfers_by_plate[self.current_plate_name]:
 			if self.transfers[tf].status == TStatus.uncompleted:
 				return False
+
+		self.lists['target']
 		return True
 
 	def undo(self):
