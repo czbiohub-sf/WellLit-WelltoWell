@@ -10,6 +10,7 @@ WelltoWell implementation of the WellLit library
   - conda install matplotlib==3.1.3
   - conda install -c conda-forge kivy
   - pip install kivy-garden
+  - pip install pandas
   - garden install graph
   - garden install matplotlib
 5. Clone this repo https://github.com/czbiohub/WellLit-WelltoWell.git
