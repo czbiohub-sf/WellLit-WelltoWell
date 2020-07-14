@@ -28,7 +28,8 @@
         orientation: 'vertical'
         FileChooserListView:
             id: filechooser
-            path: '/Users/andrew.cote/Documents/WellLit-WelltoWell/experiments'
+            path: 'C:/Users/WellLit/Desktop/TransferCSV'
+            
 
         BoxLayout:
             size_hint_y: None
@@ -129,13 +130,15 @@
 
     BoxLayout:
         orientation: 'vertical'
-        size_hint: 0.625, 1
+        size_hint: 0.6, 1
         pos_hint: {'right': 1}
         WellPlot:
             shape: 'circle'
+            type: 'source'
             id: source_plate
             size_hint: 1, 0.5
         WellPlot:
             shape: 'square'
+            type: 'dest'
             id: dest_plate
             size_hint: 1, 0.5

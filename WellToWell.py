@@ -179,20 +179,22 @@ class WelltoWell:
 			self.df = None
 
 	def writeTransferRecordFiles(self, _):
-		path = os.getcwd() + '/records/'
+		path = 'C:/Users/WellLit/Desktop/TransferRecords/'
 		csv_filename = Path(self.csv).stem
 		filename = csv_filename + '_' + 'transfer_record_' + self.timestamp + '.csv'
+		record_path_filename = Path(path + filename)
 		try:
-			with open(path + filename, mode='w') as logfile:
+			with open(record_path_filename, mode='w') as logfile:
 				log_writer = csv.writer(logfile, delimiter=',')
 				log_writer.writerow(['Timestamp', 'Source plate', 'Source well', 'Destination plate', 'Destination well', 'Status'])
 				keys = ['timestamp', 'source_plate', 'source_well', 'dest_plate', 'dest_well', 'status']
 				for transfer_id in self.tp.tf_seq:
 					transfer = self.tp.transfers[transfer_id]
 					log_writer.writerow([transfer[key] for key in keys])
-			self.log('Wrote transfer record to ' + path + filename)
+					print([transfer[key] for key in keys])
+			self.log('Wrote transfer record to ' + str(record_path_filename))
 		except:
-			raise TError('Cannot write log file to ' + path + filename)
+			raise TError('Cannot write log file to ' + str(record_path_filename))
 
 
 class WTWTransferProtocol(TransferProtocol):

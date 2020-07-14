@@ -47,24 +47,27 @@ class WelltoWellWidget(WellLitWidget):
         return self.msg
 
     def load(self, path, filename):
-        filename_csv  = str(filename[0])
-        target = (os.path.join(str(path), filename_csv))
-        logging.info('User selected file %s to load' % target)
         self.dismiss_popup()
-        if os.path.isfile(target):
-            try:
-                self.wtw.loadCsv(target)
-            except TError as err:
-                self.showPopup(err, 'Load Failed')
-            except TConfirm as conf:
-                self.showPopup(conf, 'Load Successful')
-                if not self.initialized:
-                    self.reset_plates()
-                    self.initialized = True
-                self.updateLights()
-                self.wtw.tp.id_type = ''
-                self.dest_plate = self.wtw.dest_plate
-                self.updateLabels()
+        try:
+            filename_csv  = str(filename[0])
+            target = (os.path.join(str(path), filename_csv))
+            if os.path.isfile(target):
+                try:
+                    logging.info('User selected file %s to load' % target)
+                    self.wtw.loadCsv(target)
+                except TError as err:
+                    self.showPopup(err, 'Load Failed')
+                except TConfirm as conf:
+                    self.showPopup(conf, 'Load Successful')
+                    if not self.initialized:
+                        self.reset_plates()
+                        self.initialized = True
+                    self.updateLights()
+                    self.wtw.tp.id_type = ''
+                    self.dest_plate = self.wtw.dest_plate
+                    self.updateLabels()
+        except:
+            self.showPopup(TError('Invalid target to load'), 'Load Failed')
 
     def updateLabels(self):
         self.source_plate = self.wtw.tp.current_plate_name
@@ -84,8 +87,10 @@ class WelltoWellWidget(WellLitWidget):
         color current target wells, and black out wells not involved in transfer
         '''
         if self.initialized:
-            self.ids.source_plate.pl.blackoutWells()
-            self.ids.dest_plate.pl.blackoutWells()
+            # self.ids.source_plate.pl.blackoutWells()
+            # self.ids.dest_plate.pl.blackoutWells()
+            self.ids.dest_plate.pl.emptyWells()
+            self.ids.source_plate.pl.emptyWells()
 
             current_transfers = self.wtw.tp.transfers_by_plate[self.wtw.tp.current_plate_name]
 
