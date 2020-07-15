@@ -41,27 +41,25 @@ class WelltoWellWidget(WellLitWidget):
 
     def load(self, path, filename):
         self.dismiss_popup()
-        try:
-            filename_csv  = str(filename[0])
-            target = (os.path.join(str(path), filename_csv))
-            if os.path.isfile(target):
-                try:
-                    logging.info('User selected file %s to load' % target)
-                    self.wtw.loadCsv(target)
-                except TError as err:
-                    self.showPopup(err, 'Load Failed')
-                except TConfirm as conf:
-                    self.showPopup(conf, 'Load Successful')
-                    if not self.initialized:
-                        self.reset_plates()
-                        self.initialized = True
-                    self.updateLights()
-                    self.wtw.tp.id_type = ''
-                    self.dest_plate = self.wtw.dest_plate
-                    self.updateLabels()
-        except:
-            pass
-            # self.showPopup(TError('Invalid target to load'), 'Load Failed')
+        filename_csv  = str(filename[0])
+        target = (os.path.join(str(path), filename_csv))
+
+        if os.path.isfile(target):
+            try:
+                logging.info('User selected file %s to load' % target)
+                self.wtw.loadCsv(target)
+            except TError as err:
+                self.showPopup(err, 'Load Failed')
+            except TConfirm as conf:
+                self.showPopup(conf, 'Load Successful')
+                if not self.initialized:
+                    self.reset_plates()
+                    self.initialized = True
+                self.updateLights()
+                self.wtw.tp.id_type = ''
+                self.dest_plate = self.wtw.dest_plate
+                self.updateLabels()
+
 
     def updateLabels(self):
         self.source_plate = self.wtw.tp.current_plate_name
