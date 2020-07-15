@@ -1,22 +1,15 @@
 import kivy
 kivy.require('1.11.1')
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.floatlayout import FloatLayout
-from kivy.core.window import Window
-from kivy.garden.matplotlib.backend_kivyagg import FigureCanvasKivyAgg
 # noinspection ProblematicWhitespace
 from kivy.core.window import Window
-from kivy.uix.label import Label
 from kivy.uix.popup import Popup
-from kivy.uix.button import Button
 from kivy.properties import ObjectProperty, StringProperty
-from kivy.uix.widget import Widget
-from kivy.uix.filechooser import FileChooserListView
 from datetime import datetime
 from pathlib import Path
-import json, logging, time, os, time, csv
-from WellLit.WellLitGUI import WellLitWidget, ConfirmPopup, WellLitPopup, WellPlot
+import logging, os
+from WellLit.WellLitGUI import WellLitWidget
 from WellLit.Transfer import TError, TConfirm
 from WellToWell import WelltoWell
 

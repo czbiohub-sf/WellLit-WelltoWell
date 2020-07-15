@@ -2,14 +2,11 @@
 # Joana Cabrera
 # 3/15/2020
 
-import logging, csv, time, os, re, json, uuid, datetime, argparse
-import pandas as pd
-import csv, re, uuid, datetime
+import logging, csv, uuid, datetime
 import pandas as pd
 import numpy as np
 from datetime import datetime
 from pathlib import Path
-from WellLit.plateLighting import Well, PlateLighting
 from WellLit.Transfer import Transfer, TransferProtocol, TError, TStatus, TConfirm
 
 #TODO: regexp check on well names
@@ -159,7 +156,6 @@ class WelltoWell:
 			else:
 				hasDupes = True
 
-			message = 'Plate %s has duplicates: ' % plate
 			for element in duplicates:
 				subset = batch.where(batch['SourceWell'] == element).dropna()
 
