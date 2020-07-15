@@ -5,12 +5,11 @@
 import logging, csv, uuid, datetime
 import pandas as pd
 import numpy as np
+import os
 from datetime import datetime
 from pathlib import Path
 from WellLit.Transfer import Transfer, TransferProtocol, TError, TStatus, TConfirm
 
-#TODO: regexp check on well names
-#TODO: Write log files
 
 DEST = 'destination-plate'
 
@@ -175,10 +174,10 @@ class WelltoWell:
 			self.df = None
 
 	def writeTransferRecordFiles(self, _):
-		path = 'C:/Users/WellLit/Desktop/TransferRecords/'
+		path = Path(os.getcwd() + '/records/')
 		csv_filename = Path(self.csv).stem
 		filename = csv_filename + '_' + 'transfer_record_' + self.timestamp + '.csv'
-		record_path_filename = Path(path + filename)
+		record_path_filename = Path(str(path) + filename)
 		try:
 			with open(record_path_filename, mode='w') as logfile:
 				log_writer = csv.writer(logfile, delimiter=',')

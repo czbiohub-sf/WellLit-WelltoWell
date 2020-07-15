@@ -1,6 +1,7 @@
 #:kivy 1.11.1
 #:import FigureCanvasKivyAgg kivy.garden.matplotlib.backend_kivyagg
 #:import plt matplotlib.pyplot
+#:import os os
 
 <ConfirmPopup>:
 	size_hint: None,None
@@ -28,7 +29,7 @@
         orientation: 'vertical'
         FileChooserListView:
             id: filechooser
-            path: 'C:/Users/WellLit/Desktop/TransferCSV'
+            path: os.getcwd() + '/experiments/'
             
 
         BoxLayout:

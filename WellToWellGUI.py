@@ -60,7 +60,8 @@ class WelltoWellWidget(WellLitWidget):
                     self.dest_plate = self.wtw.dest_plate
                     self.updateLabels()
         except:
-            self.showPopup(TError('Invalid target to load'), 'Load Failed')
+            pass
+            # self.showPopup(TError('Invalid target to load'), 'Load Failed')
 
     def updateLabels(self):
         self.source_plate = self.wtw.tp.current_plate_name
