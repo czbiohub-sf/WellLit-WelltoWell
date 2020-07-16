@@ -17,6 +17,7 @@ from WellToWell import WelltoWell
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None)
+    load_path = StringProperty('')
 
 
 class WelltoWellWidget(WellLitWidget):
@@ -31,23 +32,34 @@ class WelltoWellWidget(WellLitWidget):
     def __init__(self, **kwargs):
         super(WelltoWellWidget, self).__init__(**kwargs)
         self.wtw = WelltoWell()
-        self.msg = 'some message'
         self.initialized = False
         self.dest_plate = ''
         self.source_plate = ''
+        self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
+        self.load_path = 'C:/Users/WellLit/Desktop/TransferProtocols/'
+        if not os.path.isdir(self.load_path):
+            self.load_path = os.getcwd() + '/protocols'
 
-    def getStatus(self):
-        return self.msg
+    def _on_keyboard_up(self, keyboard, keycode, text, modifiers):
+        if keycode[1] == 'q':
+            self.showPopup('Are you sure you want to exit?', 'Confirm exit', func=self.quit)
+        if keycode[1] == 'n':
+            self.next()
+        if keycode[1] == 'p':
+            self.nextPlate(None)
 
-    def load(self, path, filename):
+    def load(self, filename):
         self.dismiss_popup()
-        filename_csv  = str(filename[0])
-        target = (os.path.join(str(path), filename_csv))
+        if filename:
+            filename = filename[0]
+            print(filename)
+        else:
+            self.showPopup(TError('Invalid target to load'), 'Unable to load file')
 
-        if os.path.isfile(target):
+        if os.path.isfile(str(filename)):
             try:
-                logging.info('User selected file %s to load' % target)
-                self.wtw.loadCsv(target)
+                logging.info('User selected file %s to load' % filename)
+                self.wtw.loadCsv(filename)
             except TError as err:
                 self.showPopup(err, 'Load Failed')
             except TConfirm as conf:
@@ -65,7 +77,8 @@ class WelltoWellWidget(WellLitWidget):
         self.source_plate = self.wtw.tp.current_plate_name
 
     def show_load(self):
-        content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
+        content = LoadDialog(load=self.load, cancel=self.dismiss_popup, load_path=self.load_path)
+        print(self.load_path)
         self._popup = Popup(title='Load File', content=content)
         self._popup.size_hint = (0.4, .8)
         self._popup.pos_hint = {'x': 10.0 / Window.width, 'y': 100 / Window.height}
@@ -79,10 +92,8 @@ class WelltoWellWidget(WellLitWidget):
         color current target wells, and black out wells not involved in transfer
         '''
         if self.initialized:
-            # self.ids.source_plate.pl.blackoutWells()
-            # self.ids.dest_plate.pl.blackoutWells()
-            self.ids.dest_plate.pl.emptyWells()
-            self.ids.source_plate.pl.emptyWells()
+            self.ids.source_plate.pl.blackoutWells()
+            self.ids.dest_plate.pl.blackoutWells()
 
             current_transfers = self.wtw.tp.transfers_by_plate[self.wtw.tp.current_plate_name]
 
@@ -165,7 +176,10 @@ class WelltoWellWidget(WellLitWidget):
         try:
             self.wtw.nextPlate()
         except TError as err:
-            self.showPopup(err, 'Unable to complete plate', func=self.nextPlateOverride)
+            if self.wtw.tp_present_bool():
+                self.showPopup(err, 'Unable to complete plate', func=self.nextPlateOverride)
+            else:
+                self.showPopup(err, 'Unable to complete plate')
             self.status = err.__str__()
         except TConfirm as conf:
             self.nextPlateConfirm(None)
@@ -210,12 +224,23 @@ class WelltoWellWidget(WellLitWidget):
 
     def finishTransferConfirm(self, _):
         try:
+            # Reset lighting on both WellLit plates
             self.ids.source_plate.pl.emptyWells()
             self.ids.dest_plate.pl.emptyWells()
             self.ids.source_plate.pl.show()
             self.ids.dest_plate.pl.show()
+
+            # write transfer record files
             self.wtw.writeTransferRecordFiles(None)
-            self.showPopup(TConfirm('Record file generated'), 'Transfers recorded')
+            self.showPopup(TConfirm('Record file generated, press \'q\' to quit or load a new transfer'),
+                           'Transfers complete')
+
+            # reset internal state and clear messages
+            self.wtw = WelltoWell()
+            self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
+            self.initialized = False
+            self.dest_plate = ''
+            self.source_plate = ''
         except TError as err:
             self.showPopup(err, 'Error aborting transfer')
             self.status = err.__str__()
@@ -253,5 +278,5 @@ if __name__ == '__main__':
     logging.info('Session started')
 
     Window.size = (1600, 1200)
-    Window.fullscreen = True
+    # Window.fullscreen = True
     WellToWellApp().run()

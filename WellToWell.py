@@ -32,7 +32,15 @@ class WelltoWell:
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
+		self.save_path = 'C:/Users/WellLit/Desktop/TransferRecords/'
+		if not os.path.isdir(self.save_path):
+			self.save_path = os.getcwd() + '/records/'
 
+	def tp_present_bool(self):
+		if self.tp is not None:
+			return True
+		else:
+			return False
 
 	def tp_present(self):
 		if self.tp is not None:
@@ -73,6 +81,9 @@ class WelltoWell:
 		self.msg = msg
 		logging.info(msg)
 
+	def finishTransferProtocol(self):
+		self.timestamp = ''
+
 	def loadCsv(self, csv):
 		"""
 		Validates a csv file as being free of duplicates before loading constructing a TransferProtocol from it
@@ -84,7 +95,6 @@ class WelltoWell:
 		"""
 		try:
 			# read the first line of the csv as the destination plate name
-			print(csv)
 			self.dest_plate = list(pd.read_csv(csv, nrows=0))[0]
 			self.df = pd.read_csv(csv, skiprows=1)
 			self.log('CSV file %s loaded' % csv)
@@ -108,7 +118,7 @@ class WelltoWell:
 			raise TError(self.msg)
 		else:
 			self.tp = WTWTransferProtocol(wtw=self, df=self.df)
-			self.log('TransferProtocol with %s transfers \n in %s plates created' %
+			self.log('TransferProtocol with %s transfers in %s plates created' %
 					 (self.tp.num_transfers, self.tp.num_plates))
 			self.timestamp = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S')
 			load_plate_msg = '\n Please load plate ' + self.tp.current_plate_name + ' to begin'
@@ -174,10 +184,9 @@ class WelltoWell:
 			self.df = None
 
 	def writeTransferRecordFiles(self, _):
-		path = Path(os.getcwd() + '/records/')
 		csv_filename = Path(self.csv).stem
-		filename = csv_filename + '_' + 'transfer_record_' + self.timestamp + '.csv'
-		record_path_filename = Path(str(path) + filename)
+		filename = Path(csv_filename + '_' + 'transfer_record_' + self.timestamp + '.csv')
+		record_path_filename = Path(self.save_path + str(filename))
 		try:
 			with open(record_path_filename, mode='w') as logfile:
 				log_writer = csv.writer(logfile, delimiter=',')
@@ -186,7 +195,6 @@ class WelltoWell:
 				for transfer_id in self.tp.tf_seq:
 					transfer = self.tp.transfers[transfer_id]
 					log_writer.writerow([transfer[key] for key in keys])
-					print([transfer[key] for key in keys])
 			self.log('Wrote transfer record to ' + str(record_path_filename))
 		except:
 			raise TError('Cannot write log file to ' + str(record_path_filename))
