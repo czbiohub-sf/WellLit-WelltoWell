@@ -96,7 +96,7 @@ class WelltoWell:
 		try:
 			# read the first line of the csv as the destination plate name
 			self.dest_plate = list(pd.read_csv(csv, nrows=0))[0]
-			self.df = pd.read_csv(csv, skiprows=1)
+			self.df = pd.read_csv(csv, skiprows=1, names=['PlateName','SourceWell','DestWell'])
 			self.log('CSV file %s loaded' % csv)
 			self.csv = csv
 		except:
