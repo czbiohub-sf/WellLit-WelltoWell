@@ -2,10 +2,9 @@
 # Joana Cabrera
 # 3/15/2020
 
-import logging, csv, uuid, datetime
+import logging, csv, uuid, datetime, os, re
 import pandas as pd
 import numpy as np
-import os
 from datetime import datetime
 from pathlib import Path
 from WellLit.Transfer import Transfer, TransferProtocol, TError, TStatus, TConfirm
@@ -104,15 +103,7 @@ class WelltoWell:
 			raise TError(self.msg)
 
 		hasSourDupes, msg_s = self.checkDuplicateSource()
-		# allow duplicates in destination
-		# hasDestDupes, msg_d = self.checkDuplicateDestination()
-
-		# if hasSourDupes and hasDestDupes:
-		# 	self.log('CSV file has duplicate wells in destinations and sources')
-		# 	raise TError(self.msg)
-		# if hasDestDupes:
-		# 	self.log('CSV file has duplicate well destinations')
-		# 	raise TError(self.msg)
+		self.checkWellNames()
 		if hasSourDupes:
 			self.log('CSV file has duplicate well sources')
 			raise TError(self.msg)
@@ -123,6 +114,19 @@ class WelltoWell:
 			self.timestamp = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S')
 			load_plate_msg = '\n Please load plate ' + self.tp.current_plate_name + ' to begin'
 			raise TConfirm(self.msg + load_plate_msg)
+
+	def checkWellNames(self):
+		for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
+			if np.isnan(well_name):
+				raise TError('Missing well name in row %s or improperly formatted csv' %str(row_idx + 2))
+			if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
+				raise TError('Invalid source well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
+
+		for row_idx, well_name in enumerate(list(self.df['DestWell'])):
+			if np.isnan(well_name):
+				raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+			if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
+				raise TError('Invalid destination well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
 
 	def checkDuplicateDestination(self):
 		hasDupes = False
