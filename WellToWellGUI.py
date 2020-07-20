@@ -52,7 +52,6 @@ class WelltoWellWidget(WellLitWidget):
         self.dismiss_popup()
         if filename:
             filename = filename[0]
-            print(filename)
         else:
             self.showPopup(TError('Invalid target to load'), 'Unable to load file')
 

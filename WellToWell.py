@@ -242,7 +242,7 @@ class WTWTransferProtocol(TransferProtocol):
 					unique_id = str(uuid.uuid1())
 
 					tf = Transfer(unique_id,
-								  source_plate=src_plt, dest_plate=dest_plt, source_well=src_well, dest_well=dest_well)
+								  source_plate=src_plt, dest_plate=dest_plt, source_well=src_well.upper(), dest_well=dest_well.upper())
 					plate_transfers.append(unique_id)
 					self.transfers[unique_id] = tf
 
