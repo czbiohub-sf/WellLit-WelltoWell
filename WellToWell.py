@@ -117,13 +117,13 @@ class WelltoWell:
 
 	def checkWellNames(self):
 		for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
-			if np.isnan(well_name):
+			if well_name == np.nan:
 				raise TError('Missing well name in row %s or improperly formatted csv' %str(row_idx + 2))
 			if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
 				raise TError('Invalid source well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
 
 		for row_idx, well_name in enumerate(list(self.df['DestWell'])):
-			if np.isnan(well_name):
+			if well_name == np.nan:
 				raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
 			if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
 				raise TError('Invalid destination well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))

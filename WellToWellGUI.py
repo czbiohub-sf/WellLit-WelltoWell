@@ -36,7 +36,7 @@ class WelltoWellWidget(WellLitWidget):
         self.dest_plate = ''
         self.source_plate = ''
         self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
-        self.load_path = 'C:/Users/WellLit/Desktop/TransferProtocols/'
+        self.load_path = 'C:\\Users\\WellLit\\Desktop\\TransferCSV'
         if not os.path.isdir(self.load_path):
             self.load_path = os.getcwd() + '/protocols'
 
@@ -278,5 +278,5 @@ if __name__ == '__main__':
     logging.info('Session started')
 
     Window.size = (1600, 1200)
-    # Window.fullscreen = True
+    Window.fullscreen = True
     WellToWellApp().run()
