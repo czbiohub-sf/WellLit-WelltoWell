@@ -35,6 +35,17 @@ class WelltoWell:
 		if not os.path.isdir(self.save_path):
 			self.save_path = os.getcwd() + '/records/'
 
+	def reset(self):
+		self.csv = ''
+		self.msg = ''
+		self.df = None
+		self.tp = None
+		self.timestamp = ''
+		self.dest_plate = ''
+		self.save_path = 'C:/Users/WellLit/Desktop/TransferRecords/'
+		if not os.path.isdir(self.save_path):
+			self.save_path = os.getcwd() + '/records/'
+
 	def tp_present_bool(self):
 		if self.tp is not None:
 			return True
@@ -338,8 +349,8 @@ class WTWTransferProtocol(TransferProtocol):
 				set(self.lists['uncompleted']) &
 				set(self.transfers_by_plate[self.current_plate_name]))
 			msg = self.msg
-			self.log('Confirm to skip %s remaining transfers.  Are you sure?' % len(
-				skipped_transfers_in_plate))
+			self.log('Confirm to skip %s remaining transfers.  Are you sure?' %
+					 len(skipped_transfers_in_plate))
 			raise TError(msg + self.msg)
 
 	def nextPlateConfirm(self):
@@ -374,7 +385,8 @@ class WTWTransferProtocol(TransferProtocol):
 		else:
 			self.current_plate_increment()
 			self.current_idx_increment(steps=len(skipped_transfers_in_plate))
-			raise TConfirm(self.msg)
+			msg = '. Please load plate %s' % self.current_plate_name
+			raise TConfirm(self.msg + msg)
 
 	def plateComplete(self):
 		self.synchronize()

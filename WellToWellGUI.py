@@ -40,6 +40,14 @@ class WelltoWellWidget(WellLitWidget):
         if not os.path.isdir(self.load_path):
             self.load_path = os.getcwd() + '/protocols'
 
+    def reset(self):
+        self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
+        self.dest_plate = ''
+        self.source_plate = ''
+        self.load_path = 'C:\\Users\\WellLit\\Desktop\\TransferCSV'
+        if not os.path.isdir(self.load_path):
+            self.load_path = os.getcwd() + '/protocols'
+
     def _on_keyboard_up(self, keyboard, keycode, text, modifiers):
         if keycode[1] == 'q':
             self.showPopup('Are you sure you want to exit?', 'Confirm exit', func=self.quit)
@@ -77,7 +85,6 @@ class WelltoWellWidget(WellLitWidget):
 
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup, load_path=self.load_path)
-        print(self.load_path)
         self._popup = Popup(title='Load File', content=content)
         self._popup.size_hint = (0.4, .8)
         self._popup.pos_hint = {'x': 10.0 / Window.width, 'y': 100 / Window.height}
@@ -90,9 +97,10 @@ class WelltoWellWidget(WellLitWidget):
         source_wells: completed -> empty, uncompletled -> full
         color current target wells, and black out wells not involved in transfer
         '''
-        if self.initialized:
-            self.ids.source_plate.pl.blackoutWells()
-            self.ids.dest_plate.pl.blackoutWells()
+        self.ids.source_plate.pl.blackoutWells()
+        self.ids.dest_plate.pl.blackoutWells()
+
+        if self.wtw.tp_present_bool():
 
             current_transfers = self.wtw.tp.transfers_by_plate[self.wtw.tp.current_plate_name]
 
@@ -176,12 +184,13 @@ class WelltoWellWidget(WellLitWidget):
             self.wtw.nextPlate()
         except TError as err:
             if self.wtw.tp_present_bool():
-                self.showPopup(err, 'Unable to complete plate', func=self.nextPlateOverride)
+                self.showPopup(err, 'Confirm skip remaining', func=self.nextPlateOverride)
             else:
                 self.showPopup(err, 'Unable to complete plate')
             self.status = err.__str__()
         except TConfirm as conf:
             self.nextPlateConfirm(None)
+            self.updateLabels()
             self.updateLights()
 
     def nextPlateConfirm(self, _):
@@ -209,6 +218,7 @@ class WelltoWellWidget(WellLitWidget):
         except TConfirm as conf:
             self.showPopup(conf, 'Plate skipped')
             self.status = conf.__str__()
+            self.updateLabels()
             self.updateLights()
 
     def finishTransfer(self):
@@ -224,8 +234,9 @@ class WelltoWellWidget(WellLitWidget):
     def finishTransferConfirm(self, _):
         try:
             # Reset lighting on both WellLit plates
-            self.ids.source_plate.pl.emptyWells()
-            self.ids.dest_plate.pl.emptyWells()
+
+            self.ids.source_plate.pl.blackoutWells()
+            self.ids.dest_plate.pl.blackoutWells()
             self.ids.source_plate.pl.show()
             self.ids.dest_plate.pl.show()
 
@@ -235,11 +246,9 @@ class WelltoWellWidget(WellLitWidget):
                            'Transfers complete')
 
             # reset internal state and clear messages
-            self.wtw = WelltoWell()
-            self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
-            self.initialized = False
-            self.dest_plate = ''
-            self.source_plate = ''
+            self.wtw.reset()
+            self.reset()
+            self.updateLights()
         except TError as err:
             self.showPopup(err, 'Error aborting transfer')
             self.status = err.__str__()
