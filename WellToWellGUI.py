@@ -37,6 +37,7 @@ class WelltoWellWidget(WellLitWidget):
         self.source_plate = ''
         self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
         self.load_path = 'C:\\Users\\WellLit\\Desktop\\TransferCSV'
+        self.filename = ''
         if not os.path.isdir(self.load_path):
             self.load_path = os.getcwd() + '/protocols'
 
@@ -58,6 +59,23 @@ class WelltoWellWidget(WellLitWidget):
 
     def load(self, filename):
         self.dismiss_popup()
+        self.filename = filename
+        if self.wtw.tp_present_bool():
+            if not self.wtw.tp.protocolComplete():
+                self.showPopup(TConfirm(
+                    'Current protocol incomplete, loading a new protocol will abort the current one and skip remaining transfers. Are you sure you want to do this?'),
+                               'Confirm protocol abort',
+                               func=self.skipAndLoad)
+            else:
+                self.loadConfirm(filename)
+        else:
+            self.loadConfirm(filename)
+
+    def skipAndLoad(self, filename):
+        self.finishTransferConfirm(None)
+        self.load(self.filename)
+
+    def loadConfirm(self, filename):
         if filename:
             filename = filename[0]
         else:
