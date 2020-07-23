@@ -46,3 +46,7 @@ sample-plate-003, A2, A2
 2. In the terminal window that opens, type 'git pull' and hit enter. If any updates are available it will download them in the terminal window. 
 4. In the same terminal, type 'cd WellLit', hit enter, then type 'git pull' and hit enter.
 5. You're done!
+
+## Troubleshooting
+
+If the program fails or does not behave as expected, send an email to andrew.cote@czbiohub.org
