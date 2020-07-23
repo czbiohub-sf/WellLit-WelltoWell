@@ -10,7 +10,7 @@ from pathlib import Path
 from WellLit.Transfer import Transfer, TransferProtocol, TError, TStatus, TConfirm
 
 
-DEST = 'destination-plate'
+SAVE_PATH = 'C:/Users/WellLit/Desktop/TransferRecords/'
 
 
 class WelltoWell:
@@ -31,7 +31,7 @@ class WelltoWell:
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
-		self.save_path = 'C:/Users/WellLit/Desktop/TransferRecords/'
+		self.save_path = SAVE_PATH
 		if not os.path.isdir(self.save_path):
 			self.save_path = os.getcwd() + '/records/'
 
@@ -42,7 +42,7 @@ class WelltoWell:
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
-		self.save_path = 'C:/Users/WellLit/Desktop/TransferRecords/'
+		self.save_path = SAVE_PATH
 		if not os.path.isdir(self.save_path):
 			self.save_path = os.getcwd() + '/records/'
 

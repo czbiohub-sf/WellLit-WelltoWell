@@ -13,7 +13,10 @@ WelltoWell implementation of the WellLit library
   - pip install pandas
   - garden install graph
   - garden install matplotlib
-5. Clone this repo https://github.com/czbiohub/WellLit-WelltoWell.git
+5. Clone this repo https://github.com/czbiohub/WellLit-WelltoWell.git or download as a zip file and then unzip
+6. Create a shortcut to the 'startup.bat' file located in folder and place it on the desktop. If you like, you can change the icon to be the WellLit icon by right clicking the shortcut, clicking properties, and then "change Icon" in the 'shortcut' tab
+
+
 
 ## Use instructions
 
@@ -39,6 +42,12 @@ sample-plate-003, A2, A2
 4. A Transfer Protocol is generated that will step you through each transfer. A transfer can be marked as 'complete', 'skipped', 'failed', or 'uncompete'. A record csv is generated and updated after each transfer and saved to the desktop in the 'TransferRecords' folder.
 	Keyboard shortcuts: n: next / complete transfer, p: next plate, q: quit program
 5. At the end of a transfer protocol, you can choose to load a new csv file, or quit. Records are always produced automatically when a protocol is complete.
+
+## Changing default save / records directory:
+
+To change the default directory where records are saved, edit line 13 of the file WellLit-WelltoWell/WelltoWell.py in a text editor
+To change teh default load directory where csv files are imported from, edit line 16 of the file WellLit-WelltoWell/WelltoWellGUI.py
+
 
 ## Software update instructions (if necessary)
 

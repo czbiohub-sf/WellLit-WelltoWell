@@ -13,6 +13,7 @@ from WellLit.WellLitGUI import WellLitWidget
 from WellLit.Transfer import TError, TConfirm
 from WellToWell import WelltoWell
 
+LOAD_PATH = 'C:\\Users\\WellLit\\Desktop\\TransferCSV'
 
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
@@ -36,7 +37,7 @@ class WelltoWellWidget(WellLitWidget):
         self.dest_plate = ''
         self.source_plate = ''
         self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
-        self.load_path = 'C:\\Users\\WellLit\\Desktop\\TransferCSV'
+        self.load_path = LOAD_PATH
         self.filename = ''
         if not os.path.isdir(self.load_path):
             self.load_path = os.getcwd() + '/protocols'
@@ -45,7 +46,7 @@ class WelltoWellWidget(WellLitWidget):
         self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
         self.dest_plate = ''
         self.source_plate = ''
-        self.load_path = 'C:\\Users\\WellLit\\Desktop\\TransferCSV'
+        self.load_path = LOAD_PATH
         if not os.path.isdir(self.load_path):
             self.load_path = os.getcwd() + '/protocols'
 
