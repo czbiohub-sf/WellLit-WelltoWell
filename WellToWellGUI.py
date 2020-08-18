@@ -116,8 +116,11 @@ class WelltoWellWidget(WellLitWidget):
         source_wells: completed -> empty, uncompletled -> full
         color current target wells, and black out wells not involved in transfer
         '''
-        self.ids.source_plate.pl.blackoutWells()
-        self.ids.dest_plate.pl.blackoutWells()
+        # self.ids.source_plate.pl.blackoutWells()
+        # self.ids.dest_plate.pl.blackoutWells()
+
+        self.ids.source_plate.pl.emptyWells()
+        self.ids.dest_plate.pl.emptyWells()
 
         if self.wtw.tp_present_bool():
 
@@ -305,5 +308,5 @@ if __name__ == '__main__':
     logging.info('Session started')
 
     Window.size = (1600, 1200)
-    Window.fullscreen = True
+    # Window.fullscreen = True
     WellToWellApp().run()
