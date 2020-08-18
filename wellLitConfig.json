@@ -1,11 +1,11 @@
 {
-    "A1_X_source": 0.17,
-    "A1_Y_source": -0.069,
-    "A1_X_dest": 0.17,
-    "A1_Y_dest": -0.15,
+    "A1_X_source": 0.16,
+    "A1_Y_source": 0.39,
+    "A1_X_dest": 0.16,
+    "A1_Y_dest": 0.32,
     "size_param": {
-        "circle" : 0.033,
-        "square" : 0.065
+        "circle" : 0.0175,
+        "square" : 0.03
     },
-    "well_spacing": 0.07475
+    "well_spacing": 0.03725
 }
