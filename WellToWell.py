@@ -2,15 +2,12 @@
 # Joana Cabrera
 # 3/15/2020
 
-import logging, csv, uuid, datetime, os, re
+import logging, csv, uuid, datetime, os, re, json
 import pandas as pd
 import numpy as np
 from datetime import datetime
 from pathlib import Path
 from WellLit.Transfer import Transfer, TransferProtocol, TError, TStatus, TConfirm
-
-
-SAVE_PATH = 'C:/Users/WellLit/Desktop/TransferRecords/'
 
 
 class WelltoWell:
@@ -31,9 +28,21 @@ class WelltoWell:
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
-		self.save_path = SAVE_PATH
-		if not os.path.isdir(self.save_path):
-			self.save_path = os.getcwd() + '/records/'
+
+		cwd = os.getcwd()
+		config_path = os.path.join(cwd, "wellLitConfig.json")
+		with open(config_path) as json_file:
+			configs = json.load(json_file)
+
+		self.save_path = configs['records_dir']
+		self.load_path = configs['protocol_dir']
+		self.num_wells = configs['type']
+
+		if self.save_path == "":
+			self.save_path = cwd + '/records/'
+
+		if self.load_path == "":
+			self.save_path = cwd + '/protocols/'
 
 	def reset(self):
 		self.csv = ''
@@ -42,9 +51,6 @@ class WelltoWell:
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
-		self.save_path = SAVE_PATH
-		if not os.path.isdir(self.save_path):
-			self.save_path = os.getcwd() + '/records/'
 
 	def tp_present_bool(self):
 		if self.tp is not None:
@@ -127,17 +133,32 @@ class WelltoWell:
 			raise TConfirm(self.msg + load_plate_msg)
 
 	def checkWellNames(self):
-		for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
-			if well_name == np.nan:
-				raise TError('Missing well name in row %s or improperly formatted csv' %str(row_idx + 2))
-			if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
-				raise TError('Invalid source well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
+		if self.num_wells == "384":
+			for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
+				if well_name == np.nan:
+					raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+				if not re.match(r'([a-p]|[A-P])([1-9](?!.)|1[0-9]|2[0-4])', well_name):
+					raise TError('Invalid source well name %s in row %s of csv file' % (well_name, str(row_idx + 2)))
 
-		for row_idx, well_name in enumerate(list(self.df['DestWell'])):
-			if well_name == np.nan:
-				raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
-			if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
-				raise TError('Invalid destination well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
+			for row_idx, well_name in enumerate(list(self.df['DestWell'])):
+				if well_name == np.nan:
+					raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-9]|2[0-4])', well_name):
+					raise TError(
+						'Invalid destination well name %s in row %s of csv file' % (well_name, str(row_idx + 2)))
+
+		else:
+			for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
+				if well_name == np.nan:
+					raise TError('Missing well name in row %s or improperly formatted csv' %str(row_idx + 2))
+				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
+					raise TError('Invalid source well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
+
+			for row_idx, well_name in enumerate(list(self.df['DestWell'])):
+				if well_name == np.nan:
+					raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
+					raise TError('Invalid destination well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
 
 	def checkDuplicateDestination(self):
 		hasDupes = False
