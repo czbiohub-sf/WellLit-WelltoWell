@@ -36,12 +36,12 @@ class WelltoWell:
 
 		self.save_path = configs['records_dir']
 		self.load_path = configs['protocol_dir']
-		self.num_wells = configs['type']
+		self.num_wells = configs['num_wells']
 
-		if self.save_path == "":
+		if not os.path.isdir(self.save_path):
 			self.save_path = cwd + '/records/'
 
-		if self.load_path == "":
+		if not os.path.isdir(self.load_path):
 			self.save_path = cwd + '/protocols/'
 
 	def reset(self):
