@@ -158,7 +158,6 @@ class WelltoWellWidget(WellLitWidget):
     def skip(self):
         try:
             self.wtw.skip()
-            self.wtw.writeTransferRecordFiles(None)
             self.status = self.wtw.tp.msg
             self.updateLights()
         except TError as err:
@@ -171,7 +170,6 @@ class WelltoWellWidget(WellLitWidget):
     def failed(self):
         try:
             self.wtw.failed()
-            self.wtw.writeTransferRecordFiles(None)
             self.status = self.wtw.tp.msg
             self.updateLights()
         except TError as err:
@@ -184,7 +182,6 @@ class WelltoWellWidget(WellLitWidget):
     def undo(self):
         try:
             self.wtw.undo()
-            self.wtw.writeTransferRecordFiles(None)
             self.status = self.wtw.tp.msg
             self.updateLights()
         except TError as err:

@@ -68,18 +68,22 @@ class WelltoWell:
 	def next(self):
 		if self.tp_present():
 			self.tp.complete()
+			self.writeTransferRecordFiles(None)
 
 	def skip(self):
 		if self.tp_present():
 			self.tp.skip()
+			self.writeTransferRecordFiles(None)
 
 	def failed(self):
 		if self.tp_present():
 			self.tp.failed()
+			self.writeTransferRecordFiles(None)
 
 	def undo(self):
 		if self.tp_present():
 			self.tp.undo()
+			self.writeTransferRecordFiles(None)
 
 	def nextPlate(self):
 		if self.tp_present():
@@ -112,7 +116,7 @@ class WelltoWell:
 		try:
 			# read the first line of the csv as the destination plate name
 			self.dest_plate = list(pd.read_csv(csv, nrows=0))[0]
-			self.df = pd.read_csv(csv, skiprows=1, names=['PlateName','SourceWell','DestWell'])
+			self.df = pd.read_csv(csv, skiprows=1, names=['PlateName', 'SourceWell', 'DestWell'])
 			self.log('CSV file %s loaded' % csv)
 			self.csv = csv
 		except:
@@ -230,7 +234,8 @@ class WelltoWell:
 				keys = ['timestamp', 'source_plate', 'source_well', 'dest_plate', 'dest_well', 'status']
 				for transfer_id in self.tp.tf_seq:
 					transfer = self.tp.transfers[transfer_id]
-					log_writer.writerow([transfer[key] for key in keys])
+					if transfer['status'] is not TStatus.uncompleted:
+						log_writer.writerow([transfer[key] for key in keys])
 			self.log('Wrote transfer record to ' + str(record_path_filename))
 		except:
 			raise TError('Cannot write log file to ' + str(record_path_filename))
@@ -419,7 +424,12 @@ class WTWTransferProtocol(TransferProtocol):
 		self.lists['target']
 		return True
 
+
 	def undo(self):
+		"""
+		Overrides superclass undo to disalllow undo-ing immediately after switching plates
+		:return:
+		"""
 		self.synchronize()
 		self.sortTransfers()
 		if self.canUndo:
@@ -441,6 +451,10 @@ class WTWTransferProtocol(TransferProtocol):
 		self.synchronize()
 
 	def synchronize(self):
+		"""
+		Overrides superclass synchronize to support multiple plates
+		:return:
+		"""
 		self.current_uid = self.tf_seq[self._current_idx]
 		self.current_plate_name = self.plate_names[self._current_plate]
 
