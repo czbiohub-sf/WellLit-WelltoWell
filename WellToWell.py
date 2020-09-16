@@ -141,12 +141,19 @@ class WelltoWell:
 			for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
 				if well_name == np.nan:
 					raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+				# strip off leading zeros from well names
+				well_name = well_name[0] + well_name[1:].lstrip('0')
+				self.df['SourceWell'][row_idx] = well_name
+
 				if not re.match(r'([a-p]|[A-P])([1-9](?!.)|1[0-9]|2[0-4])', well_name):
 					raise TError('Invalid source well name %s in row %s of csv file' % (well_name, str(row_idx + 2)))
 
 			for row_idx, well_name in enumerate(list(self.df['DestWell'])):
 				if well_name == np.nan:
 					raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+
+				well_name = well_name[0] + well_name[1:].lstrip('0')
+				self.df['DestWell'][row_idx] = well_name
 				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-9]|2[0-4])', well_name):
 					raise TError(
 						'Invalid destination well name %s in row %s of csv file' % (well_name, str(row_idx + 2)))
@@ -155,12 +162,20 @@ class WelltoWell:
 			for row_idx, well_name in enumerate(list(self.df['SourceWell'])):
 				if well_name == np.nan:
 					raise TError('Missing well name in row %s or improperly formatted csv' %str(row_idx + 2))
+
+				well_name = well_name[0] + well_name[1:].lstrip('0')
+				self.df['SourceWell'][row_idx] = well_name
+
 				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
 					raise TError('Invalid source well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
 
 			for row_idx, well_name in enumerate(list(self.df['DestWell'])):
 				if well_name == np.nan:
 					raise TError('Missing well name in row %s or improperly formatted csv' % str(row_idx + 2))
+
+				well_name = well_name[0] + well_name[1:].lstrip('0')
+				self.df['DestWell'][row_idx] = well_name
+
 				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-2])', well_name):
 					raise TError('Invalid destination well name %s in row %s of csv file' %(well_name, str(row_idx + 2)))
 
