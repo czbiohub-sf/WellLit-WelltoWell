@@ -234,7 +234,7 @@ class WelltoWell:
 				keys = ['timestamp', 'source_plate', 'source_well', 'dest_plate', 'dest_well', 'status']
 				for transfer_id in self.tp.tf_seq:
 					transfer = self.tp.transfers[transfer_id]
-					if transfer['status'] is not TStatus.uncompleted:
+					if transfer['status'] is not 'uncompleted':
 						log_writer.writerow([transfer[key] for key in keys])
 			self.log('Wrote transfer record to ' + str(record_path_filename))
 		except:
