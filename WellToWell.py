@@ -42,7 +42,7 @@ class WelltoWell:
 			self.save_path = cwd + '/records/'
 
 		if not os.path.isdir(self.load_path):
-			self.save_path = cwd + '/protocols/'
+			self.load_path = cwd + '/protocols/'
 
 	def reset(self):
 		self.csv = ''
@@ -229,7 +229,6 @@ class WelltoWell:
 				msg = msg + 'SourceWell %s is duplicated in rows %s' % (element, indices)
 
 			error_msg.append(msg)
-			msg = ''
 
 		return hasDupes, error_msg
 
@@ -334,7 +333,6 @@ class WTWTransferProtocol(TransferProtocol):
 		if current_transfer['timestamp'] is None:
 			return True
 		else:
-			msg = ''
 			self.log('Cannot update transfer: %s Status is already marked as %s ' %
 					 (self.tf_id(), self.transfers[self.current_uid]['status']))
 			msg = self.msg
@@ -351,12 +349,25 @@ class WTWTransferProtocol(TransferProtocol):
 		"""
 		Complete current transfer. If plate is complete, raise TConfirm
 		"""
+		self.synchronize()
 		if self.plateComplete():
 			self.log('Plate %s is complete, load plate %s to continue')
 		if self.canUpdate():
 			self.transfers[self.current_uid].updateStatus(TStatus.completed)
 			self.log('transfer complete: %s' % self.tf_id())
 			self.step()
+			if not self.plateComplete():
+				next_tf_uid = self.tf_seq[self._current_idx + 1]
+				next_tf = self.transfers[next_tf_uid]
+				if self.id_type == 'uid':
+					return next_tf.id[0:8]
+				else:
+					if next_tf['source_well'] is not None:
+						next_tf_id =  str(next_tf['source_well'] + '->' + next_tf['dest_well'])
+					if next_tf['source_tube'] is not None:
+						next_tf_id =  str(next_tf['source_tube'] + '->' + next_tf['dest_well'])
+
+				self.log('transfer complete: %s \n next transfer: %s' % (self.tf_id(),  next_tf_id))
 
 
 	def step(self):
@@ -432,12 +443,13 @@ class WTWTransferProtocol(TransferProtocol):
 	def plateComplete(self):
 		self.synchronize()
 		self.sortTransfers()
+		return_val = False
 		for tf in self.transfers_by_plate[self.current_plate_name]:
 			if self.transfers[tf].status == TStatus.uncompleted:
-				return False
+				return_val = True
 
 		self.lists['target']
-		return True
+		return return_val
 
 
 	def undo(self):
@@ -471,5 +483,6 @@ class WTWTransferProtocol(TransferProtocol):
 		:return:
 		"""
 		self.current_uid = self.tf_seq[self._current_idx]
+		self.current_transfer = self.transfers[self.current_uid ]
 		self.current_plate_name = self.plate_names[self._current_plate]
 
