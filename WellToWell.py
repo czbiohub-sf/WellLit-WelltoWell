@@ -67,7 +67,7 @@ class WelltoWell:
 
 	def next(self):
 		if self.tp_present():
-			self.tp.complete()
+			self.tp.next()
 			self.writeTransferRecordFiles(None)
 
 	def skip(self):
@@ -329,8 +329,7 @@ class WTWTransferProtocol(TransferProtocol):
 		"""
 		self.synchronize()
 		self.sortTransfers()
-		current_transfer = self.transfers[self.current_uid]
-		if current_transfer['timestamp'] is None:
+		if self.current_transfer['timestamp'] is None:
 			return True
 		else:
 			self.log('Cannot update transfer: %s Status is already marked as %s ' %
@@ -343,7 +342,6 @@ class WTWTransferProtocol(TransferProtocol):
 				else:
 					self.log('Plate %s is complete, press next plate to continue ' % self.current_plate_name)
 					raise TError(msg + self.msg)
-
 
 	def complete(self):
 		"""
@@ -369,12 +367,43 @@ class WTWTransferProtocol(TransferProtocol):
 
 				self.log('transfer complete: %s \n next transfer: %s' % (self.tf_id(),  next_tf_id))
 
+	def next(self):
+		"""
+		If the current transfer has not been started, start it.
+		If it has been started, complete it.
+		Increment idx to next transfer
+		:return:
+		"""
+		self.sortTransfers()
+		self.synchronize()
+		if self.current_transfer.status == TStatus.uncompleted:
+			self.transfers[self.current_uid].updateStatus(TStatus.started)
+			self.log('transfer started: %s' % self.tf_id())
+
+		elif self.current_transfer.status == TStatus.started:
+			self.transfers[self.current_uid].updateStatus(TStatus.completed)
+			self.log('transfer complete: %s' % self.tf_id())
+
+			if not self.plateComplete():
+				next_tf_uid = self.tf_seq[self._current_idx + 1]
+				next_tf = self.transfers[next_tf_uid]
+				if self.id_type == 'uid':
+					return next_tf.id[0:8]
+				else:
+					if next_tf['source_well'] is not None:
+						next_tf_id =  str(next_tf['source_well'] + '->' + next_tf['dest_well'])
+					if next_tf['source_tube'] is not None:
+						next_tf_id =  str(next_tf['source_tube'] + '->' + next_tf['dest_well'])
+
+				self.log('transfer complete: %s \n next transfer: %s' % (self.tf_id(),  next_tf_id))
+
+
+		self.step()
 
 	def step(self):
 		"""
 		Moves index to the next transfer in a plate. If plate full or transfer complete, raises flag
 		"""
-		self.sortTransfers()
 		self.canUndo = True
 
 		if self.plateComplete():
@@ -443,12 +472,10 @@ class WTWTransferProtocol(TransferProtocol):
 	def plateComplete(self):
 		self.synchronize()
 		self.sortTransfers()
-		return_val = False
+		return_val = True
 		for tf in self.transfers_by_plate[self.current_plate_name]:
-			if self.transfers[tf].status == TStatus.uncompleted:
-				return_val = True
-
-		self.lists['target']
+			if self.transfers[tf].status != TStatus.uncompleted:
+				return_val = False
 		return return_val
 
 

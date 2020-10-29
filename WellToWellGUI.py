@@ -145,7 +145,6 @@ class WelltoWellWidget(WellLitWidget):
     def next(self):
         try:
             self.wtw.next()
-            self.wtw.writeTransferRecordFiles(None)
             self.status = self.wtw.tp.msg
             self.updateLights()
         except TError as err:
