@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 import logging, os
 from WellLit.WellLitGUI import WellLitWidget
-from WellLit.Transfer import TError, TConfirm
+from WellLit.Transfer import TError, TConfirm, TStatus
 from WellToWell import WelltoWell
 
 class LoadDialog(FloatLayout):
@@ -136,11 +136,23 @@ class WelltoWellWidget(WellLitWidget):
                 self.ids.dest_plate.pl.markEmpty(self.wtw.tp.transfers[tf_id]['dest_well'])
 
             # Mark current targets
-            self.ids.source_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['source_well'])
-            self.ids.dest_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['dest_well'])
+            if self.wtw.tp.transfers[self.wtw.tp.current_uid].status == TStatus.started:
+                self.ids.source_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['source_well'])
+                self.ids.dest_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['dest_well'])
 
             self.ids.source_plate.pl.show()
             self.ids.dest_plate.pl.show()
+
+    def complete(self):
+        if self.canUpdate():
+            self.transfers[self.current_uid].updateStatus(TStatus.completed)
+            self.log('transfer complete: %s' % self.tf_id())
+
+
+    def start(self):
+        if self.canUpdate():
+            self.transfers[self.current_uid].updateStatus(TStatus.started)
+            self.log('transfer started: %s' % self.tf_id())
 
     def next(self):
         try:
@@ -151,6 +163,7 @@ class WelltoWellWidget(WellLitWidget):
             self.showPopup(err, 'Unable to complete transfer')
             self.status = err.__str__()
         except TConfirm as conf:
+            self.wtw.writeTransferRecordFiles(None)
             self.showPopup(conf, 'Plate complete', func=self.nextPlate)
             self.status = conf.__str__()
 
@@ -164,6 +177,7 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, '')
+            self.wtw.writeTransferRecordFiles(None)
             self.status = conf.__str__()
 
     def failed(self):
@@ -176,6 +190,7 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, '')
+            self.wtw.writeTransferRecordFiles(None)
             self.status = conf.__str__()
 
     def undo(self):
@@ -188,6 +203,7 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, '')
+            self.wtw.writeTransferRecordFiles(None)
             self.status = conf.__str__()
 
     def nextPlate(self, _):
@@ -201,6 +217,7 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.nextPlateConfirm(None)
+            self.wtw.writeTransferRecordFiles(None)
             self.updateLabels()
             self.updateLights()
 
@@ -214,6 +231,7 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, 'Load next plate')
+            self.wtw.writeTransferRecordFiles(None)
             self.updateLabels()
             self.updateLights()
 
@@ -229,6 +247,7 @@ class WelltoWellWidget(WellLitWidget):
         except TConfirm as conf:
             self.showPopup(conf, 'Plate skipped')
             self.status = conf.__str__()
+            self.wtw.writeTransferRecordFiles(None)
             self.updateLabels()
             self.updateLights()
 
@@ -297,5 +316,5 @@ if __name__ == '__main__':
     logging.info('Session started')
 
     Window.size = (1600, 1200)
-    Window.fullscreen = False
+   # Window.fullscreen = False
     WellToWellApp().run()
