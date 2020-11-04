@@ -27,6 +27,8 @@ class WelltoWellWidget(WellLitWidget):
     """
     dest_plate = StringProperty()
     source_plate = StringProperty()
+    current_tf_id = StringProperty()
+    status = StringProperty()
 
     def __init__(self, **kwargs):
         super(WelltoWellWidget, self).__init__(**kwargs)
@@ -34,6 +36,7 @@ class WelltoWellWidget(WellLitWidget):
         self.initialized = False
         self.dest_plate = ''
         self.source_plate = ''
+        self.current_tf_id = ''
         self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
         self.load_path = self.wtw.load_path
         self.filename = ''
@@ -43,9 +46,10 @@ class WelltoWellWidget(WellLitWidget):
         self.dest_plate = ''
         self.source_plate = ''
 
+    def quitConfirm(self):
+        self.showPopup('Are you sure you want to exit?', 'Confirm exit', func=self.quit)
+
     def _on_keyboard_up(self, keyboard, keycode, text, modifiers):
-        if keycode[1] == 'q':
-            self.showPopup('Are you sure you want to exit?', 'Confirm exit', func=self.quit)
         if keycode[1] == 'n':
             self.next()
         if keycode[1] == 'p':
@@ -57,7 +61,7 @@ class WelltoWellWidget(WellLitWidget):
         if self.wtw.tp_present_bool():
             if not self.wtw.tp.protocolComplete():
                 self.showPopup(TConfirm(
-                    'Current protocol incomplete, loading a new protocol will abort the current one and skip remaining transfers. Are you sure you want to do this?'),
+                    'Current protocol incomplete, loading a new protocol will abort the current one and skip remaining transfers. \n Are you sure you want to do this?'),
                                'Confirm protocol abort',
                                func=self.skipAndLoad)
             else:
@@ -140,6 +144,8 @@ class WelltoWellWidget(WellLitWidget):
                 self.ids.source_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['source_well'])
                 self.ids.dest_plate.pl.markTarget(self.wtw.tp.transfers[self.wtw.tp.current_uid]['dest_well'])
 
+            self.current_tf_id = self.wtw.tp.tf_id()
+
             self.ids.source_plate.pl.show()
             self.ids.dest_plate.pl.show()
 
@@ -163,9 +169,10 @@ class WelltoWellWidget(WellLitWidget):
             self.showPopup(err, 'Unable to complete transfer')
             self.status = err.__str__()
         except TConfirm as conf:
-            self.wtw.writeTransferRecordFiles(None)
             self.showPopup(conf, 'Plate complete', func=self.nextPlate)
             self.status = conf.__str__()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def skip(self):
         try:
@@ -177,8 +184,9 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, '')
-            self.wtw.writeTransferRecordFiles(None)
             self.status = conf.__str__()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def failed(self):
         try:
@@ -190,8 +198,9 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, '')
-            self.wtw.writeTransferRecordFiles(None)
             self.status = conf.__str__()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def undo(self):
         try:
@@ -203,10 +212,12 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, '')
-            self.wtw.writeTransferRecordFiles(None)
             self.status = conf.__str__()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def nextPlate(self, _):
+        self.status = ''
         try:
             self.wtw.nextPlate()
         except TError as err:
@@ -231,9 +242,10 @@ class WelltoWellWidget(WellLitWidget):
             self.status = err.__str__()
         except TConfirm as conf:
             self.showPopup(conf, 'Load next plate')
-            self.wtw.writeTransferRecordFiles(None)
             self.updateLabels()
             self.updateLights()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def nextPlateOverride(self, _):
         try:
@@ -250,16 +262,21 @@ class WelltoWellWidget(WellLitWidget):
             self.wtw.writeTransferRecordFiles(None)
             self.updateLabels()
             self.updateLights()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def finishTransfer(self):
         if self.initialized:
             if not self.wtw.tp.protocolComplete():
                 self.showPopup(TConfirm(
-                    'Are you sure you wish to finish this transfer protocol? All remaining transfers will be skipped'),
+                    'Are you sure you wish to finish this transfer protocol? \n All remaining transfers will be skipped'),
                                'Confirm transfer abort',
                                func=self.finishTransferConfirm)
+                if self.wtw.tp_present_bool():
+                    self.wtw.writeTransferRecordFiles(None)
             else:
                 self.finishTransferConfirm(None)
+
 
     def finishTransferConfirm(self, _):
         try:
@@ -282,6 +299,8 @@ class WelltoWellWidget(WellLitWidget):
         except TError as err:
             self.showPopup(err, 'Error aborting transfer')
             self.status = err.__str__()
+        if self.wtw.tp_present_bool():
+            self.wtw.writeTransferRecordFiles(None)
 
     def setSquareMarker(self):
         """

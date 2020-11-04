@@ -68,22 +68,18 @@ class WelltoWell:
 	def next(self):
 		if self.tp_present():
 			self.tp.next()
-			self.writeTransferRecordFiles(None)
 
 	def skip(self):
 		if self.tp_present():
 			self.tp.skip()
-			self.writeTransferRecordFiles(None)
 
 	def failed(self):
 		if self.tp_present():
 			self.tp.failed()
-			self.writeTransferRecordFiles(None)
 
 	def undo(self):
 		if self.tp_present():
 			self.tp.undo()
-			self.writeTransferRecordFiles(None)
 
 	def nextPlate(self):
 		if self.tp_present():
@@ -367,7 +363,7 @@ class WTWTransferProtocol(TransferProtocol):
 		# if just starting, mark the first transfer as started
 		if self.current_transfer.status == TStatus.uncompleted:
 			self.transfers[self.current_uid].updateStatus(TStatus.started)
-			self.log('current transfer: %s' % self.tf_id())
+			self.log('')
 
 		# once started the sequence, mark the current transfer as complete and start the next transfer
 		elif self.current_transfer.status == TStatus.started:
@@ -378,7 +374,7 @@ class WTWTransferProtocol(TransferProtocol):
 			previous_tf_uid = self.tf_seq[self._current_idx - 1]
 			previous_tf = self.transfers[previous_tf_uid]
 			previous_tf_id = str(previous_tf['source_well'] + '->' + previous_tf['dest_well'])
-			self.log('current transfer: %s' %  self.tf_id())
+			self.log('')
 
 		if self.plateComplete():
 			self.completeCheck()
@@ -437,14 +433,14 @@ class WTWTransferProtocol(TransferProtocol):
 		for tf in skipped_transfers_in_plate:
 			self.transfers[tf].updateStatus(TStatus.skipped)
 
-		self.log('Remaining %s transfers in plate %s skipped' %
+		self.log('Remaining %s transfers in plate %s skipped. \n' %
 				 (len(skipped_transfers_in_plate), self.current_plate_name))
 		if self.protocolComplete():
 			raise TConfirm(self.msg + ' Protocol Complete')
 		else:
 			self.current_plate_increment()
 			self.current_idx_increment(steps=len(skipped_transfers_in_plate))
-			msg = '. Please load plate %s' % self.current_plate_name
+			msg = 'Please load plate %s' % self.current_plate_name
 			raise TConfirm(self.msg + msg)
 
 	def plateComplete(self):

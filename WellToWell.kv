@@ -58,9 +58,13 @@
             text: 'Finish Transfer Protocol'
             on_press: root.finishTransfer()
             size_hint: 1, 0.2
+        Button:
+            text: 'Quit'
+            on_press: root.quitConfirm()
+            size_hint: 1, 0.2
         Label:
             text: ''
-            size_hint: 1, 0.3
+            size_hint: 1, 0.4
         Button:
             text: 'Next Plate'
             size_hint: 1, 0.3
@@ -97,6 +101,15 @@
                     font_name: 'Roboto-Bold'
                 Label:
                     text: root.dest_plate
+                    font_size: 30
+            BoxLayout:
+                orientation: 'horizontal'
+                Label:
+                    text: 'Current Transfer'
+                    font_size: 30
+                    font_name: 'Roboto-Bold'
+                Label:
+                    text: root.current_tf_id
                     font_size: 30
         Label:
             text: ''
