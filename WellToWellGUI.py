@@ -335,5 +335,5 @@ if __name__ == '__main__':
     logging.info('Session started')
 
     Window.size = (1600, 1200)
-   # Window.fullscreen = False
+    Window.fullscreen = True
     WellToWellApp().run()
