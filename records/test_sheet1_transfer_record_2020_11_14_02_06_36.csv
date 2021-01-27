@@ -1,0 +1,25 @@
+Timestamp,Source plate,Source well,Destination plate,Destination well,Status
+2020-11-14 02:07:18.227,Src Plate A,A2,Dest Plate X,A1,completed
+2020-11-14 02:07:19.749,Src Plate A,A5,Dest Plate X,A2,completed
+2020-11-14 02:07:21.000,Src Plate A,B1,Dest Plate X,A3,completed
+2020-11-14 02:07:23.799,Src Plate A,B10,Dest Plate X,A4,completed
+2020-11-14 02:07:24.984,Src Plate A,B12,Dest Plate X,A5,completed
+2020-11-14 02:07:25.793,Src Plate A,C3,Dest Plate X,A6,completed
+2020-11-14 02:07:26.993,Src Plate A,C7,Dest Plate X,A7,completed
+2020-11-14 02:07:28.032,Src Plate A,E11,Dest Plate X,A8,completed
+2020-11-14 02:07:28.857,Src Plate A,H6,Dest Plate X,A9,completed
+2020-11-14 02:07:43.732,Src Plate B,A9,Dest Plate X,A10,completed
+2020-11-14 02:07:44.625,Src Plate B,A10,Dest Plate X,A11,completed
+2020-11-14 02:07:45.442,Src Plate B,A11,Dest Plate X,A12,completed
+2020-11-14 02:07:46.221,Src Plate B,A12,Dest Plate X,B1,completed
+2020-11-14 02:07:46.994,Src Plate B,D1,Dest Plate X,B2,completed
+2020-11-14 02:07:47.762,Src Plate B,D3,Dest Plate X,B3,completed
+2020-11-14 02:07:48.527,Src Plate B,D7,Dest Plate X,B4,completed
+2020-11-14 02:07:49.306,Src Plate B,D8,Dest Plate X,B5,completed
+2020-11-14 02:07:50.073,Src Plate B,D9,Dest Plate X,B6,completed
+2020-11-14 02:07:50.866,Src Plate B,D10,Dest Plate X,B7,completed
+2020-11-14 02:07:51.610,Src Plate B,G12,Dest Plate X,B8,completed
+,Src Plate C,F2,Dest Plate X,B9,uncompleted
+,Src Plate C,F5,Dest Plate X,B10,uncompleted
+,Src Plate C,F6,Dest Plate X,B11,uncompleted
+,Src Plate C,F9,Dest Plate X,B12,uncompleted

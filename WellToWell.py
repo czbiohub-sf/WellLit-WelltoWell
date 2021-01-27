@@ -150,7 +150,7 @@ class WelltoWell:
 
 				well_name = well_name[0] + well_name[1:].lstrip('0')
 				self.df['DestWell'][row_idx] = well_name
-				if not re.match(r'([a-h]|[A-H])([1-9](?!.)|1[0-9]|2[0-4])', well_name):
+				if not re.match(r'([a-p]|[A-P])([1-9](?!.)|1[0-9]|2[0-4])', well_name):
 					raise TError(
 						'Invalid destination well name %s in row %s of csv file' % (well_name, str(row_idx + 2)))
 
