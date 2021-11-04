@@ -42,6 +42,26 @@
                 text: 'Load'
                 on_release: root.load(filechooser.selection)
 
+<ChooseSaveDirDialog>:
+	BoxLayout:
+        size_hint: 0.8,0.2
+	    pos_hint: {'left': 1, 'top': 1}
+        orientation: 'vertical'
+        FileChooserListView:
+            id: filechooser
+            path: root.save_dir
+
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: 'Cancel'
+                on_release: root.cancel()
+            Button:
+                text: 'Choose folder'
+                on_release: root.choose(filechooser.path)
+
 <Button>
 	font_size: 30
 
@@ -54,6 +74,9 @@
             text: 'Load Transfer Protocol'
             on_press: root.show_load()
             size_hint: 1, 0.2
+        Button:
+            text: 'Choose save location'
+            on_press: root.showChooseSaveDirectory()
         Button:
             text: 'Finish Transfer Protocol'
             on_press: root.finishTransfer()

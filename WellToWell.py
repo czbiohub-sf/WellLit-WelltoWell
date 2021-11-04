@@ -52,6 +52,10 @@ class WelltoWell:
 		self.timestamp = ''
 		self.dest_plate = ''
 
+	def setSaveDirectory(self, directory):
+		"""Sets the location to save records """
+		self.save_path = directory
+
 	def tp_present_bool(self):
 		if self.tp is not None:
 			return True

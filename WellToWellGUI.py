@@ -18,6 +18,10 @@ class LoadDialog(FloatLayout):
     cancel = ObjectProperty(None)
     load_path = StringProperty('')
 
+class ChooseSaveDirDialog(FloatLayout):
+    choose = ObjectProperty(None)
+    cancel = ObjectProperty(None)
+    save_dir = StringProperty('')
 
 class WelltoWellWidget(WellLitWidget):
     """
@@ -39,6 +43,7 @@ class WelltoWellWidget(WellLitWidget):
         self.current_tf_id = ''
         self.status = 'Shortcuts: \n n: next transfer \n p: next plate \n q: quit program'
         self.load_path = self.wtw.load_path
+        self.save_directory = None
         self.filename = ''
 
     def reset(self):
@@ -68,6 +73,36 @@ class WelltoWellWidget(WellLitWidget):
                 self.loadConfirm(filename)
         else:
             self.loadConfirm(filename)
+
+    def showChooseSaveDirectory(self):
+        content = ChooseSaveDirDialog(choose=self.chooseDirectory, cancel=self.dismiss_popup, save_dir=self.load_path)
+        self._popup = Popup(title='Choose folder', content=content)
+        self._popup.size_hint = (0.4, 0.8)
+        self._popup.pos_hint = {'x': 10.0 / Window.width, 'y': 100 / Window.height}
+        self._popup.open()
+
+    def chooseDirectory(self, directory):
+        self.dismiss_pop()
+        self.save_directory = directory + "/"
+        self.showPopup(TConfirm(
+			f'The outputted csv file will be saved to: {directory}. '
+			'Are you sure?'),
+			'Confirm save directory location',
+			func=self._chooseDirectory)
+
+    def _chooseDirectory(self, _):
+        if self.save_directory:
+            directory = self.save_directory
+
+            if os.path.isdir(directory):
+                try:
+                    self.wtw.setSaveDirectory(directory)
+                except TError as err:
+                    self.showPopup(err, "Failed to set directory")
+                except TConfirm as conf:
+                    self.showPopup(conf, "Directory set")
+        else:
+            self.showPopup(TError("Invalid save directory location."), "Unable to set save directory")
 
     def skipAndLoad(self, filename):
         self.finishTransferConfirm(None)
