@@ -82,7 +82,7 @@ class WelltoWellWidget(WellLitWidget):
         self._popup.open()
 
     def chooseDirectory(self, directory):
-        self.dismiss_pop()
+        self.dismiss_popup()
         self.save_directory = directory + "/"
         self.showPopup(TConfirm(
 			f'The outputted csv file will be saved to: {directory}. '
