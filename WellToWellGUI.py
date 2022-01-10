@@ -232,6 +232,7 @@ class WelltoWellWidget(WellLitWidget):
             self.wtw.writeTransferRecordFiles(None)
             self.updateLabels()
             self.updateLights()
+            self.next()
 
     def nextPlateConfirm(self, _):
         try:
