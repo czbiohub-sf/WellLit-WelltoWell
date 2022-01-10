@@ -11,6 +11,7 @@
 
 <WellLitPopup>:
 	size_hint: 0.3, 0.8
+    pos_hint: {'right': 0.35}
 	font_size: 30
 	height: 400
 	width: 800
@@ -24,7 +25,7 @@
 
 <LoadDialog>:
     BoxLayout:
-        size: root.size
+        size_hint: 0.95, 1
         pos: root.pos
         orientation: 'vertical'
         FileChooserListView:

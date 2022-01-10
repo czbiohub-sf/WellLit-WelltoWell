@@ -128,7 +128,7 @@ class WelltoWell:
 			self.tp = WTWTransferProtocol(wtw=self, df=self.df)
 			self.log('TransferProtocol with %s transfers in %s plates created' %
 					 (self.tp.num_transfers, self.tp.num_plates))
-			self.timestamp = datetime.utcnow().strftime('%Y_%m_%d_%H_%M_%S')
+			self.timestamp = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 			load_plate_msg = '\n Please load plate ' + self.tp.current_plate_name + ' to begin'
 			raise TConfirm(self.msg + load_plate_msg)
 

@@ -90,10 +90,11 @@ class WelltoWellWidget(WellLitWidget):
                 if not self.initialized:
                     self.reset_plates()
                     self.initialized = True
-                self.updateLights()
                 self.wtw.tp.id_type = ''
+                self.updateLights()
                 self.dest_plate = self.wtw.dest_plate
                 self.updateLabels()
+                self.next()
 
 
     def updateLabels(self):
