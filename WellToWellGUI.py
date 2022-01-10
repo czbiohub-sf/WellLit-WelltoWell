@@ -103,7 +103,7 @@ class WelltoWellWidget(WellLitWidget):
     def show_load(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup, load_path=self.load_path)
         self._popup = Popup(title='Load File', content=content)
-        self._popup.size_hint = (0.4, .8)
+        self._popup.size_hint = (0.38, .8)
         self._popup.pos_hint = {'x': 10.0 / Window.width, 'y': 100 / Window.height}
         self._popup.open()
 
