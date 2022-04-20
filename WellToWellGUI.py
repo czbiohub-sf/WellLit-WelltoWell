@@ -32,7 +32,9 @@ class WelltoWellWidget(WellLitWidget):
 
     def __init__(self, **kwargs):
         super(WelltoWellWidget, self).__init__(**kwargs)
-        self.wtw = WelltoWell()
+        cwd = os.getcwd()
+        self.config_path = os.path.join(cwd, "wellLitConfig.json")
+        self.wtw = WelltoWell(self.config_path)
         self.initialized = False
         self.dest_plate = ''
         self.source_plate = ''
@@ -88,7 +90,7 @@ class WelltoWellWidget(WellLitWidget):
             except TConfirm as conf:
                 self.showPopup(conf, 'Load Successful')
                 if not self.initialized:
-                    self.reset_plates()
+                    self.reset_plates(self.config_path)
                     self.initialized = True
                 self.wtw.tp.id_type = ''
                 self.updateLights()

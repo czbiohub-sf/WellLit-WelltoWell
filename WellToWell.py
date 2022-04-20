@@ -21,16 +21,15 @@ class WelltoWell:
 	Raises TError if user incorrectly specifies csv source file, or uses gui before transfer is loaded
 	"""
 
-	def __init__(self):
+	def __init__(self, config_path):
 		self.csv = ''
 		self.msg = ''
 		self.df = None
 		self.tp = None
 		self.timestamp = ''
 		self.dest_plate = ''
-
 		cwd = os.getcwd()
-		config_path = os.path.join(cwd, "wellLitConfig.json")
+		
 		with open(config_path) as json_file:
 			configs = json.load(json_file)
 
